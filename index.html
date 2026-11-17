@@ -31,14 +31,16 @@
   try { sessionStorage.setItem('pl', '1'); } catch (e) {}
   root.classList.add('pl-run', 'pl-hold', 'pl-lock');
   var IMG = '/_vercel/image?url=%2FNEW%403x.png&w=1200&q=75';
+  var U = 'https://images.unsplash.com/', Q = '?w=1600&q=70&auto=format&fit=crop';
+  var PHOTOS = [IMG, U + 'photo-1778432999466-1f0a0705d481' + Q, U + 'photo-1762314908735-6c7fab306f86' + Q, U + 'photo-1624880056139-d1212d7ff347' + Q, U + 'photo-1687815529363-846223d93c55' + Q];
   var CARDS = { ryken: { cls: 'ink', word: 'Ryken', meta: 'ryken.in' }, kilig: { cls: 'red', word: 'Kilig', meta: 'mykilig.com' }, nev: { cls: 'sheet', word: 'Nev', meta: 'marketplace + quick commerce' } };
   var SEQ = [
-    { ms: 420, w: 'NEED' }, { ms: 360, p: 1 }, { ms: 310, w: 'MONEY' }, { ms: 270, c: 'ryken' }, { ms: 230, w: 'FOR' },
-    { ms: 200, p: 1, flip: 1 }, { ms: 170, w: 'MY' }, { ms: 150, c: 'kilig' }, { ms: 190, w: 'PORSCHE', full: 1 },
-    { ms: 110, p: 1 }, { ms: 90, w: 'NEED' }, { ms: 80, c: 'nev' }, { ms: 70, w: 'MONEY' }, { ms: 60, p: 1, flip: 1 },
-    { ms: 60, w: 'FOR', inv: 1 }, { ms: 60, c: 'ryken' }, { ms: 60, w: 'MY' }, { ms: 60, p: 1, inv: 1 }, { ms: 60, w: 'PORSCHE' },
-    { ms: 60, c: 'kilig' }, { ms: 60, w: 'NEED', inv: 1 }, { ms: 60, p: 1 }, { ms: 60, w: 'MONEY' }, { ms: 60, c: 'nev' },
-    { ms: 60, w: 'FOR' }, { ms: 60, p: 1, flip: 1, inv: 1 }, { ms: 60, w: 'MY', inv: 1 }, { ms: 60, p: 1 }, { ms: 60, w: 'PORSCHE' }
+    { ms: 420, w: 'NEED' }, { ms: 360, p: 1 }, { ms: 310, w: 'MONEY' }, { ms: 270, p: 2 }, { ms: 230, w: 'FOR' },
+    { ms: 200, p: 1, flip: 1 }, { ms: 170, w: 'MY' }, { ms: 150, p: 3 }, { ms: 190, w: 'PORSCHE', full: 1 },
+    { ms: 110, p: 4 }, { ms: 90, w: 'NEED' }, { ms: 80, p: 5 }, { ms: 70, w: 'MONEY' }, { ms: 60, p: 1, flip: 1 },
+    { ms: 60, w: 'FOR', inv: 1 }, { ms: 60, p: 2 }, { ms: 60, w: 'MY' }, { ms: 60, p: 3, inv: 1 }, { ms: 60, w: 'PORSCHE' },
+    { ms: 60, p: 4 }, { ms: 60, w: 'NEED', inv: 1 }, { ms: 60, p: 1 }, { ms: 60, w: 'MONEY' }, { ms: 60, p: 5 },
+    { ms: 60, w: 'FOR' }, { ms: 60, p: 2, flip: 1, inv: 1 }, { ms: 60, w: 'MY', inv: 1 }, { ms: 60, p: 3 }, { ms: 60, w: 'PORSCHE' }
   ];
   function bail() { root.classList.remove('pl-run', 'pl-hold', 'pl-lock'); var p = d.getElementById('pl'); if (p) p.remove(); }
   var failsafe = setTimeout(bail, 9000);
@@ -61,7 +63,7 @@
       if (f.w) {
         var s = d.createElement('span'); s.className = 'pl-word'; s.textContent = f.w; fit(s, f.w, f.full); frame.appendChild(s);
       } else if (f.p) {
-        var p = d.createElement('div'); p.className = 'pl-photo' + (f.flip ? ' flip' : ''); p.style.backgroundImage = 'url("' + IMG + '")'; frame.appendChild(p);
+        var src = PHOTOS[f.p - 1] || IMG, p = d.createElement('div'); p.className = 'pl-photo' + (f.flip ? ' flip' : '') + (f.p > 1 ? ' full' : ''); p.style.backgroundImage = 'url("' + src + '")'; frame.appendChild(p);
       } else if (f.c) {
         var c = CARDS[f.c]; frame.className = 'pl-frame pl-card ' + c.cls;
         var m = d.createElement('span'); m.className = 'pl-meta'; m.textContent = c.meta;
@@ -96,9 +98,9 @@
     }
     pl.addEventListener('click', finish);
     addEventListener('keydown', function k(e) { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') { finish(); removeEventListener('keydown', k); } });
-    var img = new Image(); img.src = IMG;
-    var ready = Promise.all([img.decode ? img.decode().catch(function () {}) : Promise.resolve(), d.fonts ? d.fonts.load('100px Anton').catch(function () {}) : Promise.resolve()]);
-    Promise.race([ready, new Promise(function (r) { setTimeout(r, 1500); })]).then(start);
+    var pre = PHOTOS.map(function (u) { var i = new Image(); i.src = u; return i.decode ? i.decode().catch(function () {}) : Promise.resolve(); });
+    var ready = Promise.all(pre.concat([d.fonts ? d.fonts.load('100px Anton').catch(function () {}) : Promise.resolve()]));
+    Promise.race([ready, new Promise(function (r) { setTimeout(r, 2500); })]).then(start);
   });
 })();
 </script>
@@ -140,6 +142,7 @@ html.pl-hold .doodles .dot{opacity:0!important;transform:scale(0)!important}
 .portrait__img img{object-fit:contain;object-position:center bottom}
 .pl-photo{background-size:contain!important;background-position:58% bottom!important;background-repeat:no-repeat!important}
 .portrait__img img{transform:translateX(9%) scale(1.06);transform-origin:center bottom}
+.pl-photo.full{background-size:cover!important;background-position:center!important}
 .roll{height:1.12em}
 .bracket{align-items:center}
 .quote cite{text-wrap:balance}

@@ -160,6 +160,39 @@ a.card__box:hover .cover--img>img{transform:scale(1.04)}
 .qa__n{padding-top:.5em}
 .foot__links{gap:clamp(20px,2.6vw,40px)}
 .foot__links li>*+*{margin-top:12px}
+/* toolbox */
+.tools{padding:clamp(60px,8vw,120px) 0;overflow:hidden}
+.tools .wrap{padding:0 var(--gutter)}
+.tools h2{font-family:var(--display);font-weight:400;font-size:clamp(60px,10.4vw,176px);line-height:.92;text-transform:uppercase}
+.tools h2 em{display:block;margin-top:.04em;font-style:normal;color:var(--red)}
+.tools__lede{margin-top:22px;max-width:34em;font-size:clamp(17px,1.3vw,20px);line-height:1.5}
+.marq{display:flex;overflow:hidden;margin-top:clamp(40px,5vw,64px);padding:clamp(12px,1.4vw,18px) 0;border-block:2px solid var(--ink);user-select:none}
+.marq+.marq{margin-top:0;border-top:0;background:var(--ink);color:var(--paper)}
+.marq__t{display:flex;flex:none;align-items:center;gap:clamp(18px,2.4vw,36px);padding-right:clamp(18px,2.4vw,36px);font-family:var(--display);font-size:clamp(34px,5vw,80px);line-height:1;text-transform:uppercase;white-space:nowrap;animation:marq 40s linear infinite}
+.marq--rev .marq__t{animation-direction:reverse;animation-duration:46s}
+.marq__t i{font-style:normal;font-size:.45em;color:var(--red)}
+.marq:hover .marq__t{animation-play-state:paused}
+@keyframes marq{to{transform:translateX(-100%)}}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.4vw,20px);margin-top:clamp(40px,6vw,80px)}
+.bx{--bxbg:var(--sheet);position:relative;display:flex;flex-direction:column;gap:16px;min-height:250px;padding:clamp(20px,2.2vw,30px);border:2px solid var(--ink);border-radius:18px;background:var(--bxbg);transition:transform .5s var(--ease)}
+.bx--2{grid-column:span 2}
+.bx--ink{--bxbg:var(--ink);color:var(--paper)}
+.bx--red{--bxbg:var(--red);color:#fff;border-color:var(--red)}
+.bx__k{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;opacity:.72}
+.bx h3{font-family:var(--display);font-weight:400;font-size:clamp(30px,3vw,46px);line-height:.96;text-transform:uppercase}
+.bx__note{font-family:var(--hand);font-size:clamp(19px,1.7vw,24px);line-height:1.25;color:var(--red)}
+.bx--red .bx__note{color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:auto 0 0;padding:0;list-style:none}
+.chips li{display:inline-flex;align-items:center;gap:9px;padding:7px 14px 7px 7px;border:1.5px solid currentColor;border-radius:999px;font-size:15px;font-weight:500;line-height:1;transition:transform .35s var(--ease)}
+.chips b{display:grid;place-items:center;width:26px;height:26px;border-radius:8px;background:currentColor}
+.chips b span{color:var(--bxbg);font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:0}
+.bx--stat{justify-content:space-between}
+.bx--stat strong{font-family:var(--display);font-weight:400;font-size:clamp(90px,9vw,150px);line-height:.8}
+.bx--stat p:not(.bx__k){font-family:var(--hand);font-size:clamp(22px,2vw,28px);line-height:1.2;color:var(--red)}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){.bx:hover{transform:translateY(-4px) rotate(-.5deg)}.bx:nth-child(even):hover{transform:translateY(-4px) rotate(.5deg)}.chips li:hover{transform:translateY(-2px)}}
+@media (prefers-reduced-motion:reduce){.marq__t{animation:none}.marq__t+.marq__t{display:none}.marq__t{flex-wrap:wrap;white-space:normal;padding:0 var(--gutter)}}
+@media (max-width:1000px){.bento{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:620px){.bento{grid-template-columns:1fr}.bx--2{grid-column:auto}.bx{min-height:0}.bx--stat{flex-direction:row;align-items:flex-end}}
 .cover__tag{position:absolute;left:14px;top:14px;z-index:1;padding:5px 10px;border-radius:999px;background:var(--paper);color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
 .portrait__img{clip-path:none!important}
 .portrait__img img{object-fit:contain;object-position:center bottom}
@@ -410,8 +443,9 @@ a.card__box:hover h3{color:var(--red)}
     <ol>
       <li><a href="#work"><small>01</small><span class="roll"><span data-t="Work">Work</span></span></a></li>
       <li><a href="#services"><small>02</small><span class="roll"><span data-t="What I do">What I do</span></span></a></li>
-      <li><a href="#faq"><small>03</small><span class="roll"><span data-t="Before you ask">Before you ask</span></span></a></li>
-      <li><a href="#contact"><small>04</small><span class="roll"><span data-t="Say hi">Say hi</span></span></a></li>
+      <li><a href="#tools"><small>03</small><span class="roll"><span data-t="Toolbox">Toolbox</span></span></a></li>
+      <li><a href="#faq"><small>04</small><span class="roll"><span data-t="Before you ask">Before you ask</span></span></a></li>
+      <li><a href="#contact"><small>05</small><span class="roll"><span data-t="Say hi">Say hi</span></span></a></li>
       <li><a href="https://www.behance.net/nanduprasad1" target="_blank" rel="noopener"><small>05</small><span class="roll"><span data-t="Behance">Behance</span></span></a></li>
     </ol>
   </nav>
@@ -595,6 +629,16 @@ a.card__box:hover h3{color:var(--red)}
       </li>
     </ul>
   </div>
+</section>
+
+<section class="tools" id="tools" aria-labelledby="tools-h">
+  <div class="wrap">
+    <h2 id="tools-h" data-reveal>The toolbox <em>(and the robots)</em></h2>
+    <p class="tools__lede" data-reveal>Adobe and Figma for the craft. AI for speed and scale. Taste decides what ships.</p>
+  </div>
+  <div class="marq" aria-hidden="true"><div class="marq__t"><span>Photoshop</span><i>✦</i><span>Illustrator</span><i>✦</i><span>Figma</span><i>✦</i><span>Adobe CC</span><i>✦</i><span>Shopify</span><i>✦</i><span>Canva</span><i>✦</i><span>Blender</span><i>✦</i><span>Photoshop</span><i>✦</i><span>Illustrator</span><i>✦</i><span>Figma</span><i>✦</i><span>Adobe CC</span><i>✦</i><span>Shopify</span><i>✦</i><span>Canva</span><i>✦</i><span>Blender</span><i>✦</i></div><div class="marq__t"><span>Photoshop</span><i>✦</i><span>Illustrator</span><i>✦</i><span>Figma</span><i>✦</i><span>Adobe CC</span><i>✦</i><span>Shopify</span><i>✦</i><span>Canva</span><i>✦</i><span>Blender</span><i>✦</i><span>Photoshop</span><i>✦</i><span>Illustrator</span><i>✦</i><span>Figma</span><i>✦</i><span>Adobe CC</span><i>✦</i><span>Shopify</span><i>✦</i><span>Canva</span><i>✦</i><span>Blender</span><i>✦</i></div></div>
+  <div class="marq marq--rev" aria-hidden="true"><div class="marq__t"><span>Higgsfield</span><i>✦</i><span>ChatGPT</span><i>✦</i><span>Claude</span><i>✦</i><span>Midjourney</span><i>✦</i><span>Seedance</span><i>✦</i><span>Kling</span><i>✦</i><span>Veo</span><i>✦</i><span>Runway</span><i>✦</i><span>Higgsfield</span><i>✦</i><span>ChatGPT</span><i>✦</i><span>Claude</span><i>✦</i><span>Midjourney</span><i>✦</i><span>Seedance</span><i>✦</i><span>Kling</span><i>✦</i><span>Veo</span><i>✦</i><span>Runway</span><i>✦</i></div><div class="marq__t"><span>Higgsfield</span><i>✦</i><span>ChatGPT</span><i>✦</i><span>Claude</span><i>✦</i><span>Midjourney</span><i>✦</i><span>Seedance</span><i>✦</i><span>Kling</span><i>✦</i><span>Veo</span><i>✦</i><span>Runway</span><i>✦</i><span>Higgsfield</span><i>✦</i><span>ChatGPT</span><i>✦</i><span>Claude</span><i>✦</i><span>Midjourney</span><i>✦</i><span>Seedance</span><i>✦</i><span>Kling</span><i>✦</i><span>Veo</span><i>✦</i><span>Runway</span><i>✦</i></div></div>
+  <div class="wrap"><div class="bento"><article class="bx bx--2 bx--ink" data-reveal><p class="bx__k"><span>01 · Design</span><span>4 tools</span></p><h3>The craft</h3><p class="bx__note">every pixel gets finished by hand.</p><ul class="chips"><li><b><span>Ps</span></b>Photoshop</li><li><b><span>Ai</span></b>Illustrator</li><li><b><span>Fg</span></b>Figma</li><li><b><span>Cc</span></b>Adobe Creative Cloud</li></ul></article><article class="bx" data-reveal><p class="bx__k"><span>02 · AI · Think</span><span>2 tools</span></p><h3>Briefs &amp; words</h3><p class="bx__note">scripts, prompts, sharper briefs.</p><ul class="chips"><li><b><span>Gp</span></b>ChatGPT</li><li><b><span>Cl</span></b>Claude</li></ul></article><article class="bx" data-reveal><p class="bx__k"><span>03 · AI · Image</span><span>2 tools</span></p><h3>Product shots</h3><p class="bx__note">no studio, no shoot day.</p><ul class="chips"><li><b><span>Mj</span></b>Midjourney</li><li><b><span>Hf</span></b>Higgsfield</li></ul></article><article class="bx bx--2 bx--red" data-reveal><p class="bx__k"><span>04 · AI · Video</span><span>4 tools</span></p><h3>Motion &amp; ads</h3><p class="bx__note">ads in days, not weeks.</p><ul class="chips"><li><b><span>Sd</span></b>Seedance</li><li><b><span>Kl</span></b>Kling</li><li><b><span>Ve</span></b>Veo</li><li><b><span>Rw</span></b>Runway</li></ul></article><article class="bx" data-reveal><p class="bx__k"><span>05 · Web &amp; 3D</span><span>3 tools</span></p><h3>Ship it</h3><p class="bx__note">stores, quick edits, 3D.</p><ul class="chips"><li><b><span>Sh</span></b>Shopify</li><li><b><span>Ca</span></b>Canva</li><li><b><span>Bl</span></b>Blender</li></ul></article><article class="bx bx--stat" data-reveal><p class="bx__k"><span>06 · Total</span></p><strong>14</strong><p>tools. one taste.</p></article></div></div>
 </section>
 
 <section class="faq" id="faq">

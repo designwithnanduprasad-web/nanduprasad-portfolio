@@ -205,28 +205,6 @@ a.card__box:hover .cover--img>img{transform:scale(1.04)}
 @media (max-width:1000px){.tw__g{grid-template-columns:repeat(4,1fr)}}
 @media (max-width:760px){.tw__g{grid-template-columns:repeat(3,1fr)}.tw__f{width:100%;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}.tw__f::-webkit-scrollbar{display:none}.tw__f button{flex:none}}
 @media (max-width:460px){.tl__use{display:none}.tl__cat{font-size:9px}.tl__logo{width:44%}}
-/* pegboard */
-.peg{position:relative;margin-top:clamp(40px,5vw,64px);padding:clamp(72px,7vw,92px) clamp(14px,2.4vw,36px) clamp(26px,3vw,40px);border:2px solid var(--ink);border-radius:clamp(18px,2vw,26px);background:radial-gradient(circle,rgba(23,22,21,.30) 2.3px,transparent 2.9px) 13px 13px/26px 26px,linear-gradient(180deg,#ece7d6,#e4dec9);box-shadow:inset 0 2px 0 rgba(255,255,255,.6),inset 0 -14px 30px rgba(23,22,21,.06),0 30px 60px -40px rgba(23,22,21,.5)}
-.peg__label{position:absolute;left:clamp(16px,2.4vw,36px);top:clamp(14px,1.6vw,22px);display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0}
-.peg__label span{padding:2px 12px 4px;background:var(--paper);border:1.5px solid var(--ink);border-radius:6px;font-family:var(--hand);font-size:clamp(20px,1.9vw,27px);color:var(--red);transform:rotate(-2deg);box-shadow:2px 2px 0 var(--ink)}
-.peg__label small{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.6}
-.peg__g{display:grid;grid-template-columns:repeat(8,1fr);gap:clamp(22px,2.4vw,34px) clamp(8px,1.2vw,18px);margin:0;padding:0;list-style:none}
-.hang{position:relative;display:flex;flex-direction:column;align-items:center;padding-top:30px;transform-origin:50% 5px;transform:rotate(var(--t));filter:drop-shadow(0 12px 10px rgba(23,22,21,.22));cursor:grab;-webkit-tap-highlight-color:transparent}
-.hang::before{content:"";position:absolute;top:0;left:50%;width:11px;height:11px;margin-left:-5.5px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#8a8780,#2a2927 60%);box-shadow:0 1px 0 rgba(255,255,255,.5);z-index:2}
-.hang::after{content:"";position:absolute;top:6px;left:50%;width:2px;height:32px;margin-left:-1px;background:linear-gradient(#55524c,#2a2927);border-radius:2px}
-.ptag{--bg:var(--sheet);--fg:var(--ink);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;width:100%;max-width:132px;aspect-ratio:4/5;padding:26px 8px 12px;background:var(--bg);color:var(--fg);clip-path:polygon(24% 0,76% 0,100% 16%,100% 100%,0 100%,0 16%);border-radius:0 0 12px 12px}
-.ptag::before{content:"";position:absolute;top:9px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:#d9d3bf;box-shadow:inset 0 1px 2px rgba(0,0,0,.45)}
-.ptag--ink{--bg:var(--ink);--fg:var(--paper)}
-.ptag--red{--bg:var(--red);--fg:#fff}
-.ptag__logo{width:46%;height:auto;aspect-ratio:1;color:var(--fg);transition:transform .5s var(--ease)}
-.ptag__wm{font-family:var(--display);font-size:clamp(17px,1.6vw,22px);line-height:.95;text-transform:uppercase;text-align:center;overflow-wrap:anywhere;transition:transform .5s var(--ease)}
-.ptag b{font-family:var(--mono);font-size:clamp(9px,.8vw,11px);font-weight:700;letter-spacing:.05em;text-transform:uppercase;text-align:center;line-height:1.2}
-.hang:hover .ptag__logo,.hang:hover .ptag__wm{transform:scale(1.12)}
-@keyframes peg-sway{0%,100%{transform:rotate(var(--t))}50%{transform:rotate(calc(var(--t) * -1))}}
-@keyframes peg-swing{0%{transform:rotate(var(--t))}18%{transform:rotate(16deg)}36%{transform:rotate(-11deg)}54%{transform:rotate(7deg)}72%{transform:rotate(-4deg)}86%{transform:rotate(2deg)}100%{transform:rotate(var(--t))}}
-@media (prefers-reduced-motion:no-preference){.hang{animation:peg-sway 6s ease-in-out var(--d) infinite}.hang.is-swing{animation:peg-swing 1.6s cubic-bezier(.3,.7,.4,1) var(--sd,0s) 1}}
-@media (max-width:1000px){.peg__g{grid-template-columns:repeat(5,1fr)}}
-@media (max-width:620px){.peg__g{grid-template-columns:repeat(3,1fr)}.peg__label small{display:none}}
 /* footer: handmade with */
 .made{display:inline-flex;align-items:center;flex-wrap:wrap;gap:.55em}
 .made__e{display:inline-block;font-style:normal;font-size:1.7em;line-height:1;transition:transform .4s var(--ease)}
@@ -677,34 +655,6 @@ a.card__box:hover h3{color:var(--red)}
     <h2 id="tools-h" data-reveal>The toolbox <em>(and the robots)</em></h2>
     <p class="tools__lede" data-reveal>Adobe and Figma for the craft. AI for speed and scale. Taste decides what ships.</p>
   </div>
-  <div class="wrap">
-    <div class="peg" data-reveal>
-      <p class="peg__label"><span>my workbench</span><small>15 tools · hover to swing</small></p>
-      <ul class="peg__g" aria-label="Tools I use">
-        <li class="hang" style="--t:-4deg;--d:0s"><span class="ptag ptag--ink"><svg class="ptag__logo" aria-hidden="true"><use href="#t-ps"/></svg><b>Photoshop</b></span></li>
-        <li class="hang" style="--t:3deg;--d:0.07s"><span class="ptag ptag--sheet"><svg class="ptag__logo" aria-hidden="true"><use href="#t-ai"/></svg><b>Illustrator</b></span></li>
-        <li class="hang" style="--t:-2deg;--d:0.14s"><span class="ptag ptag--ink"><svg class="ptag__logo" aria-hidden="true"><use href="#t-fg"/></svg><b>Figma</b></span></li>
-        <li class="hang" style="--t:5deg;--d:0.21000000000000002s"><span class="ptag ptag--sheet"><svg class="ptag__logo" aria-hidden="true"><use href="#t-cc"/></svg><b>Adobe CC</b></span></li>
-        <li class="hang" style="--t:-3deg;--d:0.28s"><span class="ptag ptag--red"><svg class="ptag__logo" aria-hidden="true"><use href="#t-gpt"/></svg><b>ChatGPT</b></span></li>
-        <li class="hang" style="--t:2deg;--d:0.35000000000000003s"><span class="ptag ptag--ink"><svg class="ptag__logo" aria-hidden="true"><use href="#t-cl"/></svg><b>Claude</b></span></li>
-        <li class="hang" style="--t:-5deg;--d:0.42000000000000004s"><span class="ptag ptag--sheet"><svg class="ptag__logo" aria-hidden="true"><use href="#t-mj"/></svg><b>Midjourney</b></span></li>
-        <li class="hang" style="--t:3deg;--d:0.49000000000000005s"><span class="ptag ptag--red"><span class="ptag__wm" aria-label="Higgsfield">Higgs­field</span></span></li>
-        <li class="hang" style="--t:-2deg;--d:0s"><span class="ptag ptag--ink"><span class="ptag__wm" aria-label="Seedance">Seed­ance</span></span></li>
-        <li class="hang" style="--t:4deg;--d:0.07s"><span class="ptag ptag--sheet"><svg class="ptag__logo" aria-hidden="true"><use href="#t-kl"/></svg><b>Kling</b></span></li>
-        <li class="hang" style="--t:-3deg;--d:0.14s"><span class="ptag ptag--red"><span class="ptag__wm" aria-label="Veo">Veo</span></span></li>
-        <li class="hang" style="--t:2deg;--d:0.21000000000000002s"><span class="ptag ptag--ink"><svg class="ptag__logo" aria-hidden="true"><use href="#t-rw"/></svg><b>Runway</b></span></li>
-        <li class="hang" style="--t:-4deg;--d:0.28s"><span class="ptag ptag--sheet"><svg class="ptag__logo" aria-hidden="true"><use href="#t-sh"/></svg><b>Shopify</b></span></li>
-        <li class="hang" style="--t:3deg;--d:0.35000000000000003s"><span class="ptag ptag--ink"><svg class="ptag__logo" aria-hidden="true"><use href="#t-ca"/></svg><b>Canva</b></span></li>
-        <li class="hang" style="--t:-2deg;--d:0.42000000000000004s"><span class="ptag ptag--sheet"><svg class="ptag__logo" aria-hidden="true"><use href="#t-bl"/></svg><b>Blender</b></span></li>
-      </ul>
-    </div>
-  </div>
-  <script>(function(){
-var hs=[].slice.call(document.querySelectorAll('.hang'));if(!hs.length||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-function swing(h,delay){h.style.setProperty('--sd',(delay||0)+'s');h.classList.remove('is-swing');void h.offsetWidth;h.classList.add('is-swing')}
-hs.forEach(function(h){h.addEventListener('animationend',function(e){if(e.animationName==='peg-swing')h.classList.remove('is-swing')});h.addEventListener('pointerenter',function(){swing(h)});h.addEventListener('click',function(){swing(h)})});
-if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){hs.forEach(function(h,i){swing(h,i*.06)});io.disconnect()}},{threshold:.35});io.observe(document.querySelector('.peg'))}
-})();</script>
   <div class="wrap">
     <div class="tw" data-reveal>
       <div class="tw__top"><p class="tw__k">hover to light them up ↘</p><div class="tw__f" role="group" aria-label="Filter tools"><button type="button" aria-pressed="true" data-f="all">All<sup>15</sup></button><button type="button" aria-pressed="false" data-f="design">Design<sup>4</sup></button><button type="button" aria-pressed="false" data-f="words">Words<sup>2</sup></button><button type="button" aria-pressed="false" data-f="image">Image<sup>2</sup></button><button type="button" aria-pressed="false" data-f="video">Video<sup>5</sup></button><button type="button" aria-pressed="false" data-f="web">Web &amp; 3D<sup>3</sup></button></div></div>

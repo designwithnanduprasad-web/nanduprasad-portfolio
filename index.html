@@ -215,6 +215,10 @@ a.card__box:hover .cover--img>img{transform:scale(1.04)}
 /* resume links */
 .foot__links .foot__val a.copy{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:400;line-height:1.55;padding:3px 9px;border:1.5px solid var(--red);color:var(--red);background:none;text-transform:uppercase;letter-spacing:normal;text-decoration:none}
 .menu__cv{color:var(--red);text-decoration:none;border-bottom:1.5px solid currentColor}
+/* brush logo */
+a.logo.logo{display:inline-block;width:clamp(100px,8.4vw,128px);height:auto;aspect-ratio:1248/420;font-size:0;line-height:0;background:currentColor;-webkit-mask:url(/nandu-logo.svg) left center/contain no-repeat;mask:url(/nandu-logo.svg) left center/contain no-repeat;transform:rotate(-3deg);transform-origin:left center;transition:transform .5s var(--ease)}
+a.logo.logo>*{display:none}
+a.logo.logo:hover{transform:rotate(0deg) scale(1.05)}
 .cover__tag{position:absolute;left:14px;top:14px;z-index:1;padding:5px 10px;border-radius:999px;background:var(--paper);color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
 .portrait__img{clip-path:none!important}
 .portrait__img img{object-fit:contain;object-position:center bottom}

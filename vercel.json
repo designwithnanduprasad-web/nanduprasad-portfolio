@@ -1,7 +1,7 @@
 {
   "cleanUrls": true,
   "images": {
-    "sizes": [480, 800, 1200, 1600],
+    "sizes": [480, 800, 1200, 1600, 3840],
     "formats": ["image/webp"],
     "minimumCacheTTL": 2592000,
     "remotePatterns": [

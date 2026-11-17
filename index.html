@@ -214,14 +214,14 @@ a.card__box:hover .cover--img>img{transform:scale(1.04)}
 .hang{position:relative;display:flex;flex-direction:column;align-items:center;padding-top:30px;transform-origin:50% 5px;transform:rotate(var(--t));filter:drop-shadow(0 12px 10px rgba(23,22,21,.22));cursor:grab;-webkit-tap-highlight-color:transparent}
 .hang::before{content:"";position:absolute;top:0;left:50%;width:11px;height:11px;margin-left:-5.5px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#8a8780,#2a2927 60%);box-shadow:0 1px 0 rgba(255,255,255,.5);z-index:2}
 .hang::after{content:"";position:absolute;top:6px;left:50%;width:2px;height:32px;margin-left:-1px;background:linear-gradient(#55524c,#2a2927);border-radius:2px}
-.tag{--bg:var(--sheet);--fg:var(--ink);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;width:100%;max-width:132px;aspect-ratio:4/5;padding:26px 8px 12px;background:var(--bg);color:var(--fg);clip-path:polygon(24% 0,76% 0,100% 16%,100% 100%,0 100%,0 16%);border-radius:0 0 12px 12px}
-.tag::before{content:"";position:absolute;top:9px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:#d9d3bf;box-shadow:inset 0 1px 2px rgba(0,0,0,.45)}
-.tag--ink{--bg:var(--ink);--fg:var(--paper)}
-.tag--red{--bg:var(--red);--fg:#fff}
-.tag__logo{width:46%;height:auto;aspect-ratio:1;color:var(--fg);transition:transform .5s var(--ease)}
-.tag__wm{font-family:var(--display);font-size:clamp(17px,1.6vw,22px);line-height:.95;text-transform:uppercase;text-align:center;overflow-wrap:anywhere;transition:transform .5s var(--ease)}
-.tag b{font-family:var(--mono);font-size:clamp(9px,.8vw,11px);font-weight:700;letter-spacing:.05em;text-transform:uppercase;text-align:center;line-height:1.2}
-.hang:hover .tag__logo,.hang:hover .tag__wm{transform:scale(1.12)}
+.ptag{--bg:var(--sheet);--fg:var(--ink);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;width:100%;max-width:132px;aspect-ratio:4/5;padding:26px 8px 12px;background:var(--bg);color:var(--fg);clip-path:polygon(24% 0,76% 0,100% 16%,100% 100%,0 100%,0 16%);border-radius:0 0 12px 12px}
+.ptag::before{content:"";position:absolute;top:9px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:#d9d3bf;box-shadow:inset 0 1px 2px rgba(0,0,0,.45)}
+.ptag--ink{--bg:var(--ink);--fg:var(--paper)}
+.ptag--red{--bg:var(--red);--fg:#fff}
+.ptag__logo{width:46%;height:auto;aspect-ratio:1;color:var(--fg);transition:transform .5s var(--ease)}
+.ptag__wm{font-family:var(--display);font-size:clamp(17px,1.6vw,22px);line-height:.95;text-transform:uppercase;text-align:center;overflow-wrap:anywhere;transition:transform .5s var(--ease)}
+.ptag b{font-family:var(--mono);font-size:clamp(9px,.8vw,11px);font-weight:700;letter-spacing:.05em;text-transform:uppercase;text-align:center;line-height:1.2}
+.hang:hover .ptag__logo,.hang:hover .ptag__wm{transform:scale(1.12)}
 @keyframes peg-sway{0%,100%{transform:rotate(var(--t))}50%{transform:rotate(calc(var(--t) * -1))}}
 @keyframes peg-swing{0%{transform:rotate(var(--t))}18%{transform:rotate(16deg)}36%{transform:rotate(-11deg)}54%{transform:rotate(7deg)}72%{transform:rotate(-4deg)}86%{transform:rotate(2deg)}100%{transform:rotate(var(--t))}}
 @media (prefers-reduced-motion:no-preference){.hang{animation:peg-sway 6s ease-in-out var(--d) infinite}.hang.is-swing{animation:peg-swing 1.6s cubic-bezier(.3,.7,.4,1) var(--sd,0s) 1}}
@@ -674,21 +674,21 @@ a.card__box:hover h3{color:var(--red)}
     <div class="peg" data-reveal>
       <p class="peg__label"><span>my workbench</span><small>15 tools · hover to swing</small></p>
       <ul class="peg__g" aria-label="Tools I use">
-        <li class="hang" style="--t:-4deg;--d:0s"><span class="tag tag--ink"><svg class="tag__logo" aria-hidden="true"><use href="#t-ps"/></svg><b>Photoshop</b></span></li>
-        <li class="hang" style="--t:3deg;--d:0.07s"><span class="tag tag--sheet"><svg class="tag__logo" aria-hidden="true"><use href="#t-ai"/></svg><b>Illustrator</b></span></li>
-        <li class="hang" style="--t:-2deg;--d:0.14s"><span class="tag tag--ink"><svg class="tag__logo" aria-hidden="true"><use href="#t-fg"/></svg><b>Figma</b></span></li>
-        <li class="hang" style="--t:5deg;--d:0.21000000000000002s"><span class="tag tag--sheet"><svg class="tag__logo" aria-hidden="true"><use href="#t-cc"/></svg><b>Adobe CC</b></span></li>
-        <li class="hang" style="--t:-3deg;--d:0.28s"><span class="tag tag--red"><svg class="tag__logo" aria-hidden="true"><use href="#t-gpt"/></svg><b>ChatGPT</b></span></li>
-        <li class="hang" style="--t:2deg;--d:0.35000000000000003s"><span class="tag tag--ink"><svg class="tag__logo" aria-hidden="true"><use href="#t-cl"/></svg><b>Claude</b></span></li>
-        <li class="hang" style="--t:-5deg;--d:0.42000000000000004s"><span class="tag tag--sheet"><svg class="tag__logo" aria-hidden="true"><use href="#t-mj"/></svg><b>Midjourney</b></span></li>
-        <li class="hang" style="--t:3deg;--d:0.49000000000000005s"><span class="tag tag--red"><span class="tag__wm" aria-label="Higgsfield">Higgs­field</span></span></li>
-        <li class="hang" style="--t:-2deg;--d:0s"><span class="tag tag--ink"><span class="tag__wm" aria-label="Seedance">Seed­ance</span></span></li>
-        <li class="hang" style="--t:4deg;--d:0.07s"><span class="tag tag--sheet"><svg class="tag__logo" aria-hidden="true"><use href="#t-kl"/></svg><b>Kling</b></span></li>
-        <li class="hang" style="--t:-3deg;--d:0.14s"><span class="tag tag--red"><span class="tag__wm" aria-label="Veo">Veo</span></span></li>
-        <li class="hang" style="--t:2deg;--d:0.21000000000000002s"><span class="tag tag--ink"><svg class="tag__logo" aria-hidden="true"><use href="#t-rw"/></svg><b>Runway</b></span></li>
-        <li class="hang" style="--t:-4deg;--d:0.28s"><span class="tag tag--sheet"><svg class="tag__logo" aria-hidden="true"><use href="#t-sh"/></svg><b>Shopify</b></span></li>
-        <li class="hang" style="--t:3deg;--d:0.35000000000000003s"><span class="tag tag--ink"><svg class="tag__logo" aria-hidden="true"><use href="#t-ca"/></svg><b>Canva</b></span></li>
-        <li class="hang" style="--t:-2deg;--d:0.42000000000000004s"><span class="tag tag--sheet"><svg class="tag__logo" aria-hidden="true"><use href="#t-bl"/></svg><b>Blender</b></span></li>
+        <li class="hang" style="--t:-4deg;--d:0s"><span class="ptag ptag--ink"><svg class="ptag__logo" aria-hidden="true"><use href="#t-ps"/></svg><b>Photoshop</b></span></li>
+        <li class="hang" style="--t:3deg;--d:0.07s"><span class="ptag ptag--sheet"><svg class="ptag__logo" aria-hidden="true"><use href="#t-ai"/></svg><b>Illustrator</b></span></li>
+        <li class="hang" style="--t:-2deg;--d:0.14s"><span class="ptag ptag--ink"><svg class="ptag__logo" aria-hidden="true"><use href="#t-fg"/></svg><b>Figma</b></span></li>
+        <li class="hang" style="--t:5deg;--d:0.21000000000000002s"><span class="ptag ptag--sheet"><svg class="ptag__logo" aria-hidden="true"><use href="#t-cc"/></svg><b>Adobe CC</b></span></li>
+        <li class="hang" style="--t:-3deg;--d:0.28s"><span class="ptag ptag--red"><svg class="ptag__logo" aria-hidden="true"><use href="#t-gpt"/></svg><b>ChatGPT</b></span></li>
+        <li class="hang" style="--t:2deg;--d:0.35000000000000003s"><span class="ptag ptag--ink"><svg class="ptag__logo" aria-hidden="true"><use href="#t-cl"/></svg><b>Claude</b></span></li>
+        <li class="hang" style="--t:-5deg;--d:0.42000000000000004s"><span class="ptag ptag--sheet"><svg class="ptag__logo" aria-hidden="true"><use href="#t-mj"/></svg><b>Midjourney</b></span></li>
+        <li class="hang" style="--t:3deg;--d:0.49000000000000005s"><span class="ptag ptag--red"><span class="ptag__wm" aria-label="Higgsfield">Higgs­field</span></span></li>
+        <li class="hang" style="--t:-2deg;--d:0s"><span class="ptag ptag--ink"><span class="ptag__wm" aria-label="Seedance">Seed­ance</span></span></li>
+        <li class="hang" style="--t:4deg;--d:0.07s"><span class="ptag ptag--sheet"><svg class="ptag__logo" aria-hidden="true"><use href="#t-kl"/></svg><b>Kling</b></span></li>
+        <li class="hang" style="--t:-3deg;--d:0.14s"><span class="ptag ptag--red"><span class="ptag__wm" aria-label="Veo">Veo</span></span></li>
+        <li class="hang" style="--t:2deg;--d:0.21000000000000002s"><span class="ptag ptag--ink"><svg class="ptag__logo" aria-hidden="true"><use href="#t-rw"/></svg><b>Runway</b></span></li>
+        <li class="hang" style="--t:-4deg;--d:0.28s"><span class="ptag ptag--sheet"><svg class="ptag__logo" aria-hidden="true"><use href="#t-sh"/></svg><b>Shopify</b></span></li>
+        <li class="hang" style="--t:3deg;--d:0.35000000000000003s"><span class="ptag ptag--ink"><svg class="ptag__logo" aria-hidden="true"><use href="#t-ca"/></svg><b>Canva</b></span></li>
+        <li class="hang" style="--t:-2deg;--d:0.42000000000000004s"><span class="ptag ptag--sheet"><svg class="ptag__logo" aria-hidden="true"><use href="#t-bl"/></svg><b>Blender</b></span></li>
       </ul>
     </div>
   </div>

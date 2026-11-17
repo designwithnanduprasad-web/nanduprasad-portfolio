@@ -30,7 +30,7 @@
   if (!play) return;
   try { sessionStorage.setItem('pl', '1'); } catch (e) {}
   root.classList.add('pl-run', 'pl-hold', 'pl-lock');
-  var IMG = 'https://cdn.shopify.com/s/files/1/0801/2991/7122/files/Confident_Over-the-Shoulder_Portrait_1.png?v=1794844377&width=1200&format=pjpg';
+  var IMG = '/_vercel/image?url=%2FNEW%403x.png&w=1200&q=75';
   var CARDS = { ryken: { cls: 'ink', word: 'Ryken', meta: 'ryken.in' }, kilig: { cls: 'red', word: 'Kilig', meta: 'mykilig.com' }, nev: { cls: 'sheet', word: 'Nev', meta: 'marketplace + quick commerce' } };
   var SEQ = [
     { ms: 420, w: 'NEED' }, { ms: 360, p: 1 }, { ms: 310, w: 'MONEY' }, { ms: 270, c: 'ryken' }, { ms: 230, w: 'FOR' },
@@ -136,6 +136,9 @@ html.pl-hold .rise{opacity:0!important;transform:translateY(.25em)!important}
 html.pl-hold .doodles .ink{stroke-dashoffset:1!important}
 html.pl-hold .doodles .dot{opacity:0!important;transform:scale(0)!important}
 /* fixes */
+.portrait__img{clip-path:none!important}
+.portrait__img img{object-fit:contain;object-position:center bottom}
+.pl-photo{background-size:contain!important;background-position:center bottom!important}
 .roll{height:1.12em}
 .bracket{align-items:center}
 .quote cite{text-wrap:balance}
@@ -397,8 +400,8 @@ a.card__box:hover h3{color:var(--red)}
     <div class="hello__p">
       <div class="portrait">
         <div class="portrait__img">
-          <img src="https://cdn.shopify.com/s/files/1/0801/2991/7122/files/Confident_Over-the-Shoulder_Portrait_1.png?v=1794844377&width=800&format=pjpg"
-               srcset="https://cdn.shopify.com/s/files/1/0801/2991/7122/files/Confident_Over-the-Shoulder_Portrait_1.png?v=1794844377&width=480&format=pjpg 480w, https://cdn.shopify.com/s/files/1/0801/2991/7122/files/Confident_Over-the-Shoulder_Portrait_1.png?v=1794844377&width=800&format=pjpg 800w"
+          <img src="/_vercel/image?url=%2FNEW%403x.png&w=800&q=75"
+               srcset="/_vercel/image?url=%2FNEW%403x.png&w=480&q=75 480w, /_vercel/image?url=%2FNEW%403x.png&w=800&q=75 800w, /_vercel/image?url=%2FNEW%403x.png&w=1200&q=75 1200w"
                sizes="(max-width: 860px) 70vw, 400px" width="800" height="1000" alt="" fetchpriority="high">
         </div>
         <svg class="doodles" viewBox="0 0 528 620" data-draw>

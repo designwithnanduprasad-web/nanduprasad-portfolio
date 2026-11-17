@@ -52,4 +52,6 @@ figcaption{margin-top:10px;font-family:var(--mono);font-size:12px;line-height:1.
 .steps b{line-height:1.05}
 .steps p{margin-top:6px;line-height:1.6;max-width:62ch}
 .next strong{line-height:.9}
+.block h2{line-height:.98;text-wrap:balance}
+
 

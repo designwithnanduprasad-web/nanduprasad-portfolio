@@ -18,7 +18,123 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600&family=Caveat+Brush&family=Nothing+You+Could+Do&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.replace('no-js','js');</script>
+<script>
+/* Landing intro: flash cuts, letterbox closes, shutter opens */
+(function(){
+  var d = document, root = d.documentElement;
+  var nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
+  var q = location.search, seen = false;
+  try { seen = sessionStorage.getItem('pl') === '1'; } catch (e) {}
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var play = !reduce && q.indexOf('nointro') < 0 && nav.type !== 'back_forward' && !location.hash && (!seen || nav.type === 'reload' || q.indexOf('intro') >= 0);
+  if (!play) return;
+  try { sessionStorage.setItem('pl', '1'); } catch (e) {}
+  root.classList.add('pl-run', 'pl-hold', 'pl-lock');
+  var IMG = 'https://cdn.shopify.com/s/files/1/0801/2991/7122/files/Confident_Over-the-Shoulder_Portrait_1.png?v=1794844377&width=1200&format=pjpg';
+  var CARDS = { ryken: { cls: 'ink', word: 'Ryken', meta: 'ryken.in' }, kilig: { cls: 'red', word: 'Kilig', meta: 'mykilig.com' }, nev: { cls: 'sheet', word: 'Nev', meta: 'marketplace + quick commerce' } };
+  var SEQ = [
+    { ms: 420, w: 'NEED' }, { ms: 360, p: 1 }, { ms: 310, w: 'MONEY' }, { ms: 270, c: 'ryken' }, { ms: 230, w: 'FOR' },
+    { ms: 200, p: 1, flip: 1 }, { ms: 170, w: 'MY' }, { ms: 150, c: 'kilig' }, { ms: 190, w: 'PORSCHE', full: 1 },
+    { ms: 110, p: 1 }, { ms: 90, w: 'NEED' }, { ms: 80, c: 'nev' }, { ms: 70, w: 'MONEY' }, { ms: 60, p: 1, flip: 1 },
+    { ms: 60, w: 'FOR', inv: 1 }, { ms: 60, c: 'ryken' }, { ms: 60, w: 'MY' }, { ms: 60, p: 1, inv: 1 }, { ms: 60, w: 'PORSCHE' },
+    { ms: 60, c: 'kilig' }, { ms: 60, w: 'NEED', inv: 1 }, { ms: 60, p: 1 }, { ms: 60, w: 'MONEY' }, { ms: 60, c: 'nev' },
+    { ms: 60, w: 'FOR' }, { ms: 60, p: 1, flip: 1, inv: 1 }, { ms: 60, w: 'MY', inv: 1 }, { ms: 60, p: 1 }, { ms: 60, w: 'PORSCHE' }
+  ];
+  function bail() { root.classList.remove('pl-run', 'pl-hold', 'pl-lock'); var p = d.getElementById('pl'); if (p) p.remove(); }
+  var failsafe = setTimeout(bail, 9000);
+  d.addEventListener('DOMContentLoaded', function () {
+    var pl = d.createElement('div');
+    pl.id = 'pl'; pl.setAttribute('aria-hidden', 'true');
+    pl.innerHTML = '<div class="pl-frame"></div><div class="pl-bar pl-bar--t"></div><div class="pl-bar pl-bar--b"></div><span class="pl-word pl-probe"></span><button class="pl-skip" type="button" tabindex="-1">[ skip intro ]</button>';
+    d.body.prepend(pl);
+    root.classList.remove('pl-run');
+    var frame = pl.querySelector('.pl-frame'), bt = pl.querySelector('.pl-bar--t'), bb = pl.querySelector('.pl-bar--b'), probe = pl.querySelector('.pl-probe');
+    var timers = [], raf = 0, ended = false, started = false;
+    function fit(el, txt, full) {
+      probe.textContent = txt;
+      var w = probe.getBoundingClientRect().width / 100 || .5 * txt.length, W = innerWidth, H = innerHeight;
+      el.style.fontSize = Math.min(W * (full ? .96 : .86) / w, H * (full ? .9 : .66) / .8) + 'px';
+    }
+    function draw(f) {
+      frame.className = 'pl-frame' + (f.inv ? ' inv' : '');
+      frame.textContent = '';
+      if (f.w) {
+        var s = d.createElement('span'); s.className = 'pl-word'; s.textContent = f.w; fit(s, f.w, f.full); frame.appendChild(s);
+      } else if (f.p) {
+        var p = d.createElement('div'); p.className = 'pl-photo' + (f.flip ? ' flip' : ''); p.style.backgroundImage = 'url("' + IMG + '")'; frame.appendChild(p);
+      } else if (f.c) {
+        var c = CARDS[f.c]; frame.className = 'pl-frame pl-card ' + c.cls;
+        var m = d.createElement('span'); m.className = 'pl-meta'; m.textContent = c.meta;
+        var w2 = d.createElement('span'); w2.className = 'pl-word'; w2.textContent = c.word; fit(w2, c.word, false);
+        frame.appendChild(m); frame.appendChild(w2);
+      }
+    }
+    var t = 0, starts = [], fullAt = 0;
+    SEQ.forEach(function (f) { starts.push(t); t += f.ms; if (f.full) fullAt = t; });
+    var total = t;
+    function finish() {
+      if (ended) return; ended = true; clearTimeout(failsafe);
+      timers.forEach(clearTimeout); cancelAnimationFrame(raf);
+      bt.style.transform = bb.style.transform = 'scaleY(1)';
+      frame.remove(); var sk = pl.querySelector('.pl-skip'); if (sk) sk.remove();
+      requestAnimationFrame(function () {
+        pl.classList.add('open'); root.classList.remove('pl-hold');
+        setTimeout(function () { pl.remove(); root.classList.remove('pl-lock'); }, 1150);
+      });
+    }
+    function start() {
+      if (started) return; started = true;
+      var t0 = performance.now();
+      SEQ.forEach(function (f, i) { timers.push(setTimeout(function () { draw(f); }, starts[i])); });
+      (function tick() {
+        if (ended) return;
+        var e = performance.now() - t0, p = Math.min(Math.max(0, (e - fullAt) / (total - fullAt)), 1), k = (1 - Math.cos(p * Math.PI)) / 2;
+        bt.style.transform = bb.style.transform = 'scaleY(' + k + ')';
+        if (e < total) raf = requestAnimationFrame(tick);
+      })();
+      timers.push(setTimeout(finish, total));
+    }
+    pl.addEventListener('click', finish);
+    addEventListener('keydown', function k(e) { if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') { finish(); removeEventListener('keydown', k); } });
+    var img = new Image(); img.src = IMG;
+    var ready = Promise.all([img.decode ? img.decode().catch(function () {}) : Promise.resolve(), d.fonts ? d.fonts.load('100px Anton').catch(function () {}) : Promise.resolve()]);
+    Promise.race([ready, new Promise(function (r) { setTimeout(r, 1500); })]).then(start);
+  });
+})();
+</script>
 <style>
+/* landing intro */
+html.pl-run{background:#000}
+html.pl-run body{visibility:hidden}
+html.pl-lock{overflow:hidden}
+#pl{position:fixed;inset:0;z-index:400;overflow:hidden;cursor:pointer}
+.pl-frame{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#000}
+.pl-frame.inv{background:#E2352B}
+.pl-frame.inv .pl-word{color:#000}
+.pl-word{position:relative;font-family:"Anton","Impact",sans-serif;font-weight:400;color:#E2352B;text-transform:uppercase;line-height:.8;white-space:nowrap;letter-spacing:-.01em;padding-top:.06em}
+.pl-probe{position:absolute;top:0;left:0;font-size:100px;visibility:hidden;padding:0}
+.pl-photo{position:absolute;inset:0;background-size:cover;background-position:center 22%}
+.pl-photo.flip{transform:scaleX(-1)}
+.pl-frame.inv .pl-photo{filter:invert(1)}
+.pl-photo::after{content:"";position:absolute;inset:0;opacity:.35;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.pl-card.ink{background:#171615;color:#F3F1E7}
+.pl-card.ink .pl-word{color:#F3F1E7}
+.pl-card.red{background:#E2352B;color:#fff}
+.pl-card.red .pl-word{color:#fff}
+.pl-card.sheet{background:#F3F1E7;color:#171615}
+.pl-card.sheet .pl-word{color:#171615}
+.pl-meta{position:absolute;left:clamp(16px,3vw,32px);top:clamp(16px,3vw,28px);font:400 13px/1 "Space Mono",monospace;text-transform:uppercase;letter-spacing:.04em}
+.pl-bar{position:absolute;left:0;right:0;height:50.5%;z-index:5;background:#000;transform:scaleY(0)}
+.pl-bar--t{top:0;transform-origin:50% 0}
+.pl-bar--b{bottom:0;transform-origin:50% 100%}
+#pl.open .pl-bar{transition:transform .9s cubic-bezier(.76,0,.24,1) .12s}
+#pl.open .pl-bar--t{transform:translateY(-100%) scaleY(1)!important}
+#pl.open .pl-bar--b{transform:translateY(100%) scaleY(1)!important}
+.pl-skip{position:absolute;right:clamp(14px,2.4vw,32px);bottom:clamp(14px,2.4vw,28px);z-index:6;background:none;border:0;padding:6px;color:#F3F1E7;opacity:.7;font:400 12px "Space Mono",monospace;text-transform:uppercase;letter-spacing:.04em;cursor:pointer}
+.pl-skip:hover{opacity:1}
+html.pl-hold .rise{opacity:0!important;transform:translateY(.25em)!important}
+html.pl-hold .doodles .ink{stroke-dashoffset:1!important}
+html.pl-hold .doodles .dot{opacity:0!important;transform:scale(0)!important}
 /* fixes */
 .roll{height:1.12em}
 .bracket{align-items:center}

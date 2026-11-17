@@ -138,6 +138,10 @@ html.pl-hold .rise{opacity:0!important;transform:translateY(.25em)!important}
 html.pl-hold .doodles .ink{stroke-dashoffset:1!important}
 html.pl-hold .doodles .dot{opacity:0!important;transform:scale(0)!important}
 /* fixes */
+.cover--img{padding:0;background:#111}
+.cover--img>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+a.card__box:hover .cover--img>img{transform:scale(1.04)}
+.cover__tag{position:absolute;left:14px;top:14px;z-index:1;padding:5px 10px;border-radius:999px;background:var(--paper);color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
 .portrait__img{clip-path:none!important}
 .portrait__img img{object-fit:contain;object-position:center bottom}
 .pl-photo{background-size:contain!important;background-position:58% bottom!important;background-repeat:no-repeat!important}
@@ -473,6 +477,30 @@ a.card__box:hover h3{color:var(--red)}
   <div class="wrap">
     <h2 data-reveal>Work that <em>shipped</em></h2>
     <ul class="grid">
+      <li class="card card--wide" data-reveal>
+        <a class="card__box" href="/work/ooru">
+          <span class="cover cover--img"><img src="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_35mH65LpDLaLjry2OkH54MdalYX%2Fhf_20261117_082913_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.png&amp;w=1200&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_35mH65LpDLaLjry2OkH54MdalYX%2Fhf_20261117_082913_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.png&amp;w=800&amp;q=75 800w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_35mH65LpDLaLjry2OkH54MdalYX%2Fhf_20261117_082913_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.png&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_35mH65LpDLaLjry2OkH54MdalYX%2Fhf_20261117_082913_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.png&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 1320px) 100vw, 1320px" alt="Ooru coffee brand flat-lay" loading="lazy" decoding="async"><span class="cover__tag">Concept</span><span class="view" aria-hidden="true">Read case study →</span></span>
+          <div class="card__row"><h3>Ooru</h3><span class="card__year">2026</span></div>
+          <p class="card__sub">A Bengaluru filter-coffee brand built from the steel tumbler on every darshini counter.</p>
+          <p class="card__tags">Concept · Brand identity · Packaging · Signage</p>
+        </a>
+      </li>
+      <li class="card" data-reveal>
+        <a class="card__box" href="/work/thali-theory">
+          <span class="cover cover--img"><img src="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_35mH65LpDLaLjry2OkH54MdalYX%2Fhf_20261117_082914_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.png&amp;w=1200&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_35mH65LpDLaLjry2OkH54MdalYX%2Fhf_20261117_082914_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.png&amp;w=800&amp;q=75 800w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_35mH65LpDLaLjry2OkH54MdalYX%2Fhf_20261117_082914_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.png&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_35mH65LpDLaLjry2OkH54MdalYX%2Fhf_20261117_082914_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.png&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 760px) 100vw, 640px" alt="Thali Theory spice-kit boxes" loading="lazy" decoding="async"><span class="cover__tag">Concept</span><span class="view" aria-hidden="true">Read case study →</span></span>
+          <div class="card__row"><h3>Thali Theory</h3><span class="card__year">2026</span></div>
+          <p class="card__sub">Spice-kit packaging that sells the dish, not the brand: one colour per dish, three steps per box.</p>
+          <p class="card__tags">Concept · Packaging · Range design</p>
+        </a>
+      </li>
+      <li class="card" data-reveal style="--d:.12s">
+        <a class="card__box" href="/work/steep">
+          <span class="cover cover--img"><img src="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_35mH65LpDLaLjry2OkH54MdalYX%2Fhf_20261117_082913_75f38e8c-2af2-45fb-8c92-72190d151810.png&amp;w=1200&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_35mH65LpDLaLjry2OkH54MdalYX%2Fhf_20261117_082913_75f38e8c-2af2-45fb-8c92-72190d151810.png&amp;w=800&amp;q=75 800w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_35mH65LpDLaLjry2OkH54MdalYX%2Fhf_20261117_082913_75f38e8c-2af2-45fb-8c92-72190d151810.png&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_35mH65LpDLaLjry2OkH54MdalYX%2Fhf_20261117_082913_75f38e8c-2af2-45fb-8c92-72190d151810.png&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 760px) 100vw, 640px" alt="Steep smart kettle product shot" loading="lazy" decoding="async"><span class="cover__tag">Concept</span><span class="view" aria-hidden="true">Read case study →</span></span>
+          <div class="card__row"><h3>Steep</h3><span class="card__year">2026</span></div>
+          <p class="card__sub">A smart-kettle launch campaign made entirely with generative AI. No studio, no shoot.</p>
+          <p class="card__tags">Concept · AI ad campaign · Art direction</p>
+        </a>
+      </li>
       <li class="card" data-reveal>
         <a class="card__box" href="https://ryken.in" target="_blank" rel="noopener">
           <span class="cover cover--ink"><span class="cover__row"><span>ryken.in</span><span>01</span></span><span class="cover__word">Ryken</span><span class="cover__row"><span>Web · Shopify · Brand launch</span></span>

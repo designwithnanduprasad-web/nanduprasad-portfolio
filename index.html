@@ -145,6 +145,21 @@ a.card__box:hover .cover--img>img{transform:scale(1.04)}
 .cover--art.cover--ink{background-image:linear-gradient(90deg,rgba(17,17,17,.92) 0%,rgba(17,17,17,.55) 45%,rgba(17,17,17,0) 75%),var(--bg)}
 .cover--art.cover--red{background-image:linear-gradient(90deg,rgba(210,28,31,.9) 0%,rgba(210,28,31,.5) 45%,rgba(210,28,31,0) 75%),var(--bg)}
 .cover--art.cover--sheet{background-image:linear-gradient(90deg,rgba(248,247,240,.92) 0%,rgba(248,247,240,.5) 45%,rgba(248,247,240,0) 75%),var(--bg)}
+/* type spacing pass */
+#work h2,.faq h2{line-height:.92}
+#work h2 em,.faq h2 em{display:block;margin-top:.04em}
+.services li{line-height:.9;text-wrap:balance}
+.services li+li{margin-top:.16em}
+.pitch__text{max-width:32em;margin-left:auto}
+.pitch__text p+p{margin-top:.9em}
+.card__row{margin-top:6px;align-items:baseline}
+.card__sub{margin-top:12px;max-width:36em;line-height:1.5}
+.card__tags{margin-top:12px}
+.qa h3{line-height:1}
+.qa p{margin-top:4px;max-width:34em;line-height:1.55}
+.qa__n{padding-top:.5em}
+.foot__links{gap:clamp(20px,2.6vw,40px)}
+.foot__links li>*+*{margin-top:12px}
 .cover__tag{position:absolute;left:14px;top:14px;z-index:1;padding:5px 10px;border-radius:999px;background:var(--paper);color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
 .portrait__img{clip-path:none!important}
 .portrait__img img{object-fit:contain;object-position:center bottom}

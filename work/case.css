@@ -53,5 +53,9 @@ figcaption{margin-top:10px;font-family:var(--mono);font-size:12px;line-height:1.
 .steps p{margin-top:6px;line-height:1.6;max-width:62ch}
 .next strong{line-height:.9}
 .block h2{line-height:.98;text-wrap:balance}
+/* brush logo */
+a.logo.logo{display:inline-block;width:clamp(96px,8vw,120px);height:auto;aspect-ratio:1248/420;font-size:0;line-height:0;color:var(--red);background:currentColor;-webkit-mask:url(/nandu-logo.svg) left center/contain no-repeat;mask:url(/nandu-logo.svg) left center/contain no-repeat;transform:rotate(-3deg);transform-origin:left center;transition:transform .5s var(--ease)}
+a.logo.logo:hover{transform:rotate(0deg) scale(1.05)}
+
 
 

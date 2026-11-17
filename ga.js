@@ -23,6 +23,7 @@
     var method = href.indexOf('mailto:') === 0 ? 'email'
       : href.indexOf('tel:') === 0 ? 'call'
       : /behance\.net/.test(href) ? 'behance'
+      : /\.pdf$/i.test(href) ? 'resume'
       : /wa\.me|whatsapp/.test(href) ? 'whatsapp' : '';
     if (method) {
       gtag('event', 'contact_click', { method: method, location: el.classList.contains('env') ? 'floating_envelope' : 'page' });

@@ -439,27 +439,36 @@ a.card__box:hover h3{color:var(--red)}
 .deck__head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px 40px;flex-wrap:wrap}
 .deck__hint{position:relative;margin:0 4px 6px 0;font-family:var(--hand);color:var(--red);font-size:clamp(22px,2vw,30px);line-height:1.25;transform:rotate(-5deg);text-align:right}
 .deck__hint svg{display:block;margin:4px 0 0 auto;transform:rotate(8deg)}
-.deck__meter{position:sticky;top:14px;z-index:30;display:flex;align-items:baseline;gap:6px;width:max-content;margin:56px 0 -42px auto;padding:6px 16px 7px 14px;border-radius:999px;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;opacity:0;transform:translateY(-8px) rotate(2deg);transition:opacity .35s var(--ease),transform .5s var(--ease-big);pointer-events:none}
+.deck__meter{display:flex;align-items:baseline;gap:6px;width:max-content;margin:0 0 0 auto;flex:none;padding:6px 16px 7px 14px;border-radius:999px;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;opacity:0;transform:translateY(-8px) rotate(2deg);transition:opacity .35s var(--ease),transform .5s var(--ease-big);pointer-events:none}
 .deck__meter.on{opacity:1;transform:rotate(2deg)}
 .deck__meter b{font-family:var(--display);font-weight:400;font-size:22px;line-height:1;color:var(--red)}
 .deck__meter i{font-style:normal;opacity:.6}
 .deck__name{margin-left:8px}
-.grid.deck{display:block;margin:64px 0 0}
+.grid.deck{display:block;margin:28px 0 0}
+.deck__bar{position:sticky;top:12px;z-index:30;display:flex;align-items:center;gap:12px;margin-top:48px;pointer-events:none}
+.deck__f{display:flex;flex-wrap:wrap;gap:6px;pointer-events:auto}
+.deck__f button{padding:7px 14px 8px;border:1.5px solid var(--ink);border-radius:999px;background:var(--paper);color:var(--ink);font:inherit;font-family:var(--mono);font-size:12px;line-height:1.2;cursor:pointer;transition:background .25s,color .25s,transform .4s var(--ease-big)}
+.deck__f button sup{margin-left:2px;font-size:9px;vertical-align:4px;opacity:.6}
+.deck__f button:hover{transform:rotate(-3deg)}
+.deck__f button[aria-pressed="true"]{background:var(--ink);color:var(--paper);transform:rotate(-3deg)}
+.deck__f button[aria-pressed="true"] sup{opacity:.8;color:var(--red)}
+.deck__f button:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.deck>.card[hidden]{display:none}
 .deck>.card{position:sticky;top:calc(64px + var(--i)*9px);margin:0 0 48px}
 .deck>.card:last-child{margin-bottom:0}
 .deck .card__box{--dim:0;container-type:inline-size;position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:auto auto auto auto 1fr auto auto;column-gap:48px;height:min(76svh,680px);padding:32px;background:var(--ink);color:var(--paper);text-decoration:none;transform-origin:50% 30%;box-shadow:0 30px 60px -36px rgba(23,22,21,.6),0 -10px 30px -22px rgba(23,22,21,.5);will-change:transform}
 .deck .card__box::after{content:"";position:absolute;inset:0;background:var(--ink);opacity:var(--dim);pointer-events:none}
-.deck>.card:nth-child(3n+2) .card__box{background:var(--red);color:#fff}
-.deck>.card:nth-child(3n) .card__box{background:var(--sheet);color:var(--ink);outline:2px solid var(--ink);outline-offset:-2px}
+.deck>.tone-red .card__box{background:var(--red);color:#fff}
+.deck>.tone-sheet .card__box{background:var(--sheet);color:var(--ink);outline:2px solid var(--ink);outline-offset:-2px}
 .deck .cover{grid-column:2;grid-row:1/-1;aspect-ratio:auto!important;height:100%;min-height:0}
 .deck .view{display:none}
 .deck .cover__tag{display:none}
 .card__meta{grid-column:1;grid-row:1;display:flex;justify-content:space-between;gap:12px;margin:0;padding-bottom:12px;border-bottom:1.5px solid currentColor;font-family:var(--mono);font-size:12px;letter-spacing:.02em}
 .card__meta span:first-child{padding:3px 10px;margin:-3px 0 0 -2px;border-radius:999px;background:var(--paper);color:var(--ink);transform:rotate(-3deg)}
-.deck>.card:nth-child(3n) .card__meta span:first-child{background:var(--red);color:#fff}
+.deck>.tone-sheet .card__meta span:first-child{background:var(--red);color:#fff}
 .deck .card__title{grid-column:1;grid-row:2;margin:24px 0 0;font-family:var(--display);font-weight:400;font-size:clamp(40px,7.6cqi,116px);line-height:.9;letter-spacing:.005em;text-transform:uppercase;text-wrap:balance;transition:color .25s}
 .card__note{grid-column:1;grid-row:3;justify-self:start;margin:14px 0 0;font-family:var(--hand);font-size:clamp(19px,1.6vw,24px);line-height:1.3;color:var(--red);transform:rotate(-2.5deg);transform-origin:0 50%}
-.deck>.card:nth-child(3n+2) .card__note{color:var(--ink)}
+.deck>.tone-red .card__note{color:var(--ink)}
 .deck .card__sub{grid-column:1;grid-row:4;margin:24px 0 0;max-width:30ch;font-size:clamp(16px,1.25vw,19px);line-height:1.42;color:inherit}
 .deck .card__tags{grid-column:1;grid-row:6;display:flex;flex-wrap:wrap;gap:6px;margin:0;color:inherit;opacity:1;font-size:11px;letter-spacing:.02em;text-transform:none}
 .card__tags span{padding:5px 10px;border:1.5px solid currentColor;border-radius:999px;opacity:.8}
@@ -467,7 +476,7 @@ a.card__box:hover h3{color:var(--red)}
 .deck a.card__box:focus-visible{outline:3px solid var(--red);outline-offset:4px}
 @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
   .deck a.card__box:hover .card__title{color:var(--red)}
-  .deck>.card:nth-child(3n+2) a.card__box:hover .card__title{color:var(--ink)}
+  .deck>.tone-red a.card__box:hover .card__title{color:var(--ink)}
   .deck a.card__box:hover .card__cta{text-decoration-thickness:3px}
 }
 /* no transform-based hover inside the deck: it fights the scroll stacking */
@@ -480,8 +489,12 @@ a.card__box:hover h3{color:var(--red)}
   .deck .card__title{font-size:clamp(36px,7.4cqi,76px)}
 }
 @media (max-width:760px){
-  .deck__meter{margin-bottom:-36px}
-  .grid.deck{margin-top:48px}
+  .deck__bar{margin-top:36px}
+  .deck__f{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-right:-16px;padding:4px 16px 4px 2px}
+  .deck__f::-webkit-scrollbar{display:none}
+  .deck__f button{flex:none}
+  .deck__meter{display:none}
+  .grid.deck{margin-top:20px}
   .deck>.card{top:calc(56px + var(--i)*6px);margin-bottom:32px}
   .deck .card__box{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr) auto auto auto auto auto;height:min(calc(100svh - 110px),640px);padding:16px}
   .card__meta{grid-row:1;padding-bottom:10px}
@@ -621,9 +634,18 @@ a.card__box:hover h3{color:var(--red)}
       <h2 data-reveal>Stuff I made <em>(and made up)</em></h2>
       <p class="deck__hint" data-reveal aria-hidden="true">they stack.<br>keep scrolling <svg viewBox="0 0 40 46" width="34" height="40"><path d="M8 3c14 6 22 18 17 34M17 31l8 7 6-10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
     </div>
-    <p class="deck__meter" aria-hidden="true"><b data-deck-n>1</b><i>/<span data-deck-total>11</span></i><span class="deck__name" data-deck-name>KILIG Nexa Core</span></p>
+    <div class="deck__bar">
+      <div class="deck__f" role="group" aria-label="Show projects by type">
+        <button type="button" aria-pressed="true" data-f="all">All <sup>11</sup></button>
+        <button type="button" aria-pressed="false" data-f="packaging">Packaging <sup>4</sup></button>
+        <button type="button" aria-pressed="false" data-f="identity">Brand identity <sup>2</sup></button>
+        <button type="button" aria-pressed="false" data-f="web">Web &amp; app <sup>3</sup></button>
+        <button type="button" aria-pressed="false" data-f="ai">AI visuals <sup>3</sup></button>
+      </div>
+      <p class="deck__meter" aria-hidden="true"><b data-deck-n>1</b><i>/<span data-deck-total>11</span></i><span class="deck__name" data-deck-name>KILIG Nexa Core</span></p>
+    </div>
     <ul class="grid deck" data-deck>
-      <li style="--i:0;--r:-2.6deg" class="card card--wide">
+      <li style="--i:0;--r:-2.6deg" class="card tone-red" data-cat="packaging">
         <a class="card__box" href="/work/kilig-nexa-core">
           <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_63442438-1a29-4b73-abea-ebd6c7bb15d9.webp&amp;w=1600&amp;q=75" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_63442438-1a29-4b73-abea-ebd6c7bb15d9.webp&amp;w=800&amp;q=75 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_63442438-1a29-4b73-abea-ebd6c7bb15d9.webp&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_63442438-1a29-4b73-abea-ebd6c7bb15d9.webp&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 1320px) 100vw, 1320px" alt="KILIG Nexa Core air fryer retail box" loading="lazy" decoding="async"><span class="cover__tag">Client work</span><span class="view" aria-hidden="true">Read case study →</span></span>
           <p class="card__meta"><span>Client work</span><span>2025</span></p>
@@ -634,40 +656,18 @@ a.card__box:hover h3{color:var(--red)}
           <span class="card__cta" aria-hidden="true">Read case study →</span>
         </a>
       </li>
-      <li style="--i:1;--r:2.1deg" class="card card--wide">
-        <a class="card__box" href="/work/kilig-mykilig-app">
-          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fmykilig-hero.webp&amp;w=1600&amp;q=80" srcset="/_vercel/image?url=%2Fwork%2Fmykilig-hero.webp&amp;w=800&amp;q=80 800w, /_vercel/image?url=%2Fwork%2Fmykilig-hero.webp&amp;w=1600&amp;q=80 1600w" sizes="(max-width: 1320px) 100vw, 1320px" alt="MyKilig app screens: welcome, home and cooking timer" loading="lazy" decoding="async" style="object-position:center 40%"><span class="cover__tag">Client work</span><span class="view" aria-hidden="true">Read case study →</span></span>
+      <li style="--i:1;--r:2.6deg" class="card tone-ink" data-cat="packaging">
+        <div class="card__box">
+          <span class="cover cover--ink cover--art" style="--bg:url('/_vercel/image?url=%2Fwork%2Fimg%2Fhf_d53a1483-0d0b-48a3-a19e-66fc8e091af4.webp&amp;w=1200&amp;q=75')"><span class="cover__row"><span>Marketplace + quick commerce</span><span>04</span></span><span class="cover__word">Nev</span><span class="cover__row"><span>Listings · Packaging</span></span>
+            <svg class="cover__star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5c.6 4.6 2.6 7 8.5 8.5-5.9 1.5-7.9 3.9-8.5 8.5-.6-4.6-2.6-7-8.5-8.5 5.9-1.5 7.9-3.9 8.5-8.5Z" fill="currentColor"/></svg></span>
           <p class="card__meta"><span>Client work</span><span>2025</span></p>
-          <h3 class="card__title">MyKilig app</h3>
-          <p class="card__note">no more babysitting fries</p>
-          <p class="card__sub">One app for KILIG&rsquo;s air fryer, ice maker and car fridge, designed so you never have to stand and watch your food.</p>
-          <p class="card__tags"><span>KILIG</span><span>App UI/UX</span><span>30 screens</span></p>
-          <span class="card__cta" aria-hidden="true">Read case study →</span>
-        </a>
+          <h3 class="card__title">Nev</h3>
+          <p class="card__note">has to sell at thumbnail size</p>
+          <p class="card__sub">A listing system that sells at thumbnail size, across every marketplace.</p>
+          <p class="card__tags"><span>E-commerce</span><span>Listing images</span><span>Packaging</span></p>
+        </div>
       </li>
-      <li style="--i:2;--r:-1.6deg" class="card card--wide">
-        <a class="card__box" href="/work/kilig-wine-cooler">
-          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fkilig-wc18-ad.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fkilig-wc18-ad.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fkilig-wc18-ad.webp&amp;w=1200&amp;q=78 1200w" sizes="(max-width: 1320px) 100vw, 1320px" alt="KILIG WC-18 wine cooler with wine bottles, grapes and ice on deep blue" loading="lazy" decoding="async"><span class="cover__tag">Client work</span><span class="view" aria-hidden="true">Read case study →</span></span>
-          <p class="card__meta"><span>Client work</span><span>2025</span></p>
-          <h3 class="card__title">KILIG WC&#8209;18 Wine Cooler</h3>
-          <p class="card__note">no studio was harmed</p>
-          <p class="card__sub">A cinematic AI video ad and an eight-image Amazon listing for a compact wine cooler.</p>
-          <p class="card__tags"><span>KILIG</span><span>AI video</span><span>Amazon listing</span></p>
-          <span class="card__cta" aria-hidden="true">Read case study →</span>
-        </a>
-      </li>
-      <li style="--i:3;--r:2.8deg" class="card card--wide">
-        <a class="card__box" href="/work/ooru">
-          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=1200&amp;q=75" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=800&amp;q=75 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 1320px) 100vw, 1320px" alt="Ooru coffee brand flat-lay" loading="lazy" decoding="async"><span class="cover__tag">Concept</span><span class="view" aria-hidden="true">Read case study →</span></span>
-          <p class="card__meta"><span>Concept</span><span>2026</span></p>
-          <h3 class="card__title">Ooru</h3>
-          <p class="card__note">tumbler-approved</p>
-          <p class="card__sub">A Bengaluru filter-coffee brand built from the steel tumbler on every darshini counter.</p>
-          <p class="card__tags"><span>Concept</span><span>Brand identity</span><span>Packaging</span><span>Signage</span></p>
-          <span class="card__cta" aria-hidden="true">Read case study →</span>
-        </a>
-      </li>
-      <li style="--i:4;--r:-2.2deg" class="card">
+      <li style="--i:2;--r:-2.2deg" class="card tone-sheet" data-cat="packaging">
         <a class="card__box" href="/work/thali-theory">
           <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.webp&amp;w=1200&amp;q=75" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.webp&amp;w=800&amp;q=75 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.webp&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.webp&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 760px) 100vw, 640px" alt="Thali Theory spice-kit boxes" loading="lazy" decoding="async"><span class="cover__tag">Concept</span><span class="view" aria-hidden="true">Read case study →</span></span>
           <p class="card__meta"><span>Concept</span><span>2026</span></p>
@@ -678,31 +678,42 @@ a.card__box:hover h3{color:var(--red)}
           <span class="card__cta" aria-hidden="true">Read case study →</span>
         </a>
       </li>
-      <li style="--i:5;--r:1.4deg" class="card">
-        <a class="card__box" href="/work/steep">
-          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=1200&amp;q=75" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=800&amp;q=75 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 760px) 100vw, 640px" alt="Steep smart kettle product shot" loading="lazy" decoding="async"><span class="cover__tag">Concept</span><span class="view" aria-hidden="true">Read case study →</span></span>
+      <li style="--i:3;--r:2.8deg" class="card tone-ink" data-cat="packaging identity">
+        <a class="card__box" href="/work/ooru">
+          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=1200&amp;q=75" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=800&amp;q=75 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 1320px) 100vw, 1320px" alt="Ooru coffee brand flat-lay" loading="lazy" decoding="async"><span class="cover__tag">Concept</span><span class="view" aria-hidden="true">Read case study →</span></span>
           <p class="card__meta"><span>Concept</span><span>2026</span></p>
-          <h3 class="card__title">Steep</h3>
-          <p class="card__note">zero shoots, all kettle</p>
-          <p class="card__sub">A smart-kettle launch campaign made entirely with generative AI. No studio, no shoot.</p>
-          <p class="card__tags"><span>Concept</span><span>AI ad campaign</span><span>Art direction</span></p>
+          <h3 class="card__title">Ooru</h3>
+          <p class="card__note">tumbler-approved</p>
+          <p class="card__sub">A Bengaluru filter-coffee brand built from the steel tumbler on every darshini counter.</p>
+          <p class="card__tags"><span>Concept</span><span>Brand identity</span><span>Packaging</span><span>Signage</span></p>
           <span class="card__cta" aria-hidden="true">Read case study →</span>
         </a>
       </li>
-      <li style="--i:6;--r:-2.9deg" class="card">
-        <a class="card__box" href="https://ryken.in" target="_blank" rel="noopener">
-          <span class="cover cover--ink cover--art" style="--bg:url('/_vercel/image?url=%2Fwork%2Fimg%2Fhf_a91bc7c1-4056-44c6-a514-3f4f4077f015.webp&amp;w=1200&amp;q=75')"><span class="cover__row"><span>ryken.in</span><span>01</span></span><span class="cover__word">Ryken</span><span class="cover__row"><span>Web · Shopify · Brand launch</span></span>
+      <li style="--i:4;--r:-1.9deg" class="card tone-red" data-cat="identity">
+        <a class="card__box" href="https://www.behance.net/nanduprasad1" target="_blank" rel="noopener">
+          <span class="cover cover--red cover--art" style="--bg:url('/_vercel/image?url=%2Fwork%2Fimg%2Fhf_79c30959-9d8b-4703-82ca-dfe4966010e2.webp&amp;w=1200&amp;q=75')"><span class="cover__row"><span>Motif Design Co · 3Dot Corp</span><span>05</span></span><span class="cover__word">Identity systems</span><span class="cover__row"><span>Logos · Guidelines · Social &amp; print</span></span>
             <svg class="cover__star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5c.6 4.6 2.6 7 8.5 8.5-5.9 1.5-7.9 3.9-8.5 8.5-.6-4.6-2.6-7-8.5-8.5 5.9-1.5 7.9-3.9 8.5-8.5Z" fill="currentColor"/></svg>
-            <span class="view" aria-hidden="true">Visit site ↗</span></span>
-          <p class="card__meta"><span>Client site</span><span>2025</span></p>
-          <h3 class="card__title">Ryken</h3>
-          <p class="card__note">launched from a blank page</p>
-          <p class="card__sub">Launching a kitchen-appliance brand online, built around its first product.</p>
-          <p class="card__tags"><span>Web design</span><span>Shopify</span><span>Brand launch</span></p>
-          <span class="card__cta" aria-hidden="true">Visit site ↗</span>
+            <span class="view" aria-hidden="true">See it on Behance ↗</span></span>
+          <p class="card__meta"><span>Identity</span><span>2023</span></p>
+          <h3 class="card__title">Identity systems</h3>
+          <p class="card__note">logos that came with rules</p>
+          <p class="card__sub">Logos, palettes and guidelines for client businesses, plus the social and print work that followed.</p>
+          <p class="card__tags"><span>Logo design</span><span>Brand guidelines</span><span>Social &amp; print</span></p>
+          <span class="card__cta" aria-hidden="true">See it on Behance ↗</span>
         </a>
       </li>
-      <li style="--i:7;--r:2.3deg" class="card">
+      <li style="--i:5;--r:2.1deg" class="card tone-sheet" data-cat="web">
+        <a class="card__box" href="/work/kilig-mykilig-app">
+          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fmykilig-hero.webp&amp;w=1600&amp;q=80" srcset="/_vercel/image?url=%2Fwork%2Fmykilig-hero.webp&amp;w=800&amp;q=80 800w, /_vercel/image?url=%2Fwork%2Fmykilig-hero.webp&amp;w=1600&amp;q=80 1600w" sizes="(max-width: 1320px) 100vw, 1320px" alt="MyKilig app screens: welcome, home and cooking timer" loading="lazy" decoding="async" style="object-position:center 40%"><span class="cover__tag">Client work</span><span class="view" aria-hidden="true">Read case study →</span></span>
+          <p class="card__meta"><span>Client work</span><span>2025</span></p>
+          <h3 class="card__title">MyKilig app</h3>
+          <p class="card__note">no more babysitting fries</p>
+          <p class="card__sub">One app for KILIG&rsquo;s air fryer, ice maker and car fridge, designed so you never have to stand and watch your food.</p>
+          <p class="card__tags"><span>KILIG</span><span>App UI/UX</span><span>30 screens</span></p>
+          <span class="card__cta" aria-hidden="true">Read case study →</span>
+        </a>
+      </li>
+      <li style="--i:6;--r:2.3deg" class="card tone-red" data-cat="web">
         <a class="card__box" href="https://mykilig.com" target="_blank" rel="noopener">
           <span class="cover cover--red cover--art" style="--bg:url('/_vercel/image?url=%2Fwork%2Fimg%2Fhf_903af959-b8c2-47c4-860a-46c5a5d458a3.webp&amp;w=1200&amp;q=75')"><span class="cover__row"><span>mykilig.com</span><span>02</span></span><span class="cover__word">Kilig</span><span class="cover__row"><span>Web · Listings · Packaging</span></span>
             <svg class="cover__star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5c.6 4.6 2.6 7 8.5 8.5-5.9 1.5-7.9 3.9-8.5 8.5-.6-4.6-2.6-7-8.5-8.5 5.9-1.5 7.9-3.9 8.5-8.5Z" fill="currentColor"/></svg>
@@ -715,7 +726,42 @@ a.card__box:hover h3{color:var(--red)}
           <span class="card__cta" aria-hidden="true">Visit site ↗</span>
         </a>
       </li>
-      <li style="--i:8;--r:-1.3deg" class="card">
+      <li style="--i:7;--r:-2.9deg" class="card tone-ink" data-cat="web">
+        <a class="card__box" href="https://ryken.in" target="_blank" rel="noopener">
+          <span class="cover cover--ink cover--art" style="--bg:url('/_vercel/image?url=%2Fwork%2Fimg%2Fhf_a91bc7c1-4056-44c6-a514-3f4f4077f015.webp&amp;w=1200&amp;q=75')"><span class="cover__row"><span>ryken.in</span><span>01</span></span><span class="cover__word">Ryken</span><span class="cover__row"><span>Web · Shopify · Brand launch</span></span>
+            <svg class="cover__star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5c.6 4.6 2.6 7 8.5 8.5-5.9 1.5-7.9 3.9-8.5 8.5-.6-4.6-2.6-7-8.5-8.5 5.9-1.5 7.9-3.9 8.5-8.5Z" fill="currentColor"/></svg>
+            <span class="view" aria-hidden="true">Visit site ↗</span></span>
+          <p class="card__meta"><span>Client site</span><span>2025</span></p>
+          <h3 class="card__title">Ryken</h3>
+          <p class="card__note">launched from a blank page</p>
+          <p class="card__sub">Launching a kitchen-appliance brand online, built around its first product.</p>
+          <p class="card__tags"><span>Web design</span><span>Shopify</span><span>Brand launch</span></p>
+          <span class="card__cta" aria-hidden="true">Visit site ↗</span>
+        </a>
+      </li>
+      <li style="--i:8;--r:-1.6deg" class="card tone-red" data-cat="ai">
+        <a class="card__box" href="/work/kilig-wine-cooler">
+          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fkilig-wc18-ad.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fkilig-wc18-ad.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fkilig-wc18-ad.webp&amp;w=1200&amp;q=78 1200w" sizes="(max-width: 1320px) 100vw, 1320px" alt="KILIG WC-18 wine cooler with wine bottles, grapes and ice on deep blue" loading="lazy" decoding="async"><span class="cover__tag">Client work</span><span class="view" aria-hidden="true">Read case study →</span></span>
+          <p class="card__meta"><span>Client work</span><span>2025</span></p>
+          <h3 class="card__title">KILIG WC&#8209;18 Wine Cooler</h3>
+          <p class="card__note">no studio was harmed</p>
+          <p class="card__sub">A cinematic AI video ad and an eight-image Amazon listing for a compact wine cooler.</p>
+          <p class="card__tags"><span>KILIG</span><span>AI video</span><span>Amazon listing</span></p>
+          <span class="card__cta" aria-hidden="true">Read case study →</span>
+        </a>
+      </li>
+      <li style="--i:9;--r:1.4deg" class="card tone-ink" data-cat="ai">
+        <a class="card__box" href="/work/steep">
+          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=1200&amp;q=75" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=800&amp;q=75 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 760px) 100vw, 640px" alt="Steep smart kettle product shot" loading="lazy" decoding="async"><span class="cover__tag">Concept</span><span class="view" aria-hidden="true">Read case study →</span></span>
+          <p class="card__meta"><span>Concept</span><span>2026</span></p>
+          <h3 class="card__title">Steep</h3>
+          <p class="card__note">zero shoots, all kettle</p>
+          <p class="card__sub">A smart-kettle launch campaign made entirely with generative AI. No studio, no shoot.</p>
+          <p class="card__tags"><span>Concept</span><span>AI ad campaign</span><span>Art direction</span></p>
+          <span class="card__cta" aria-hidden="true">Read case study →</span>
+        </a>
+      </li>
+      <li style="--i:10;--r:-1.3deg" class="card tone-sheet" data-cat="ai">
         <a class="card__box" href="/work/ai-ad-studio">
           <span class="cover cover--sheet cover--art" style="--bg:url('/_vercel/image?url=%2Fwork%2Fimg%2Fhf_1334ad03-2037-48bd-8f42-45d9d4e3c5b8.webp&amp;w=1200&amp;q=75')"><span class="cover__row"><span>Higgsfield · ChatGPT · Claude</span><span>03</span></span><span class="cover__word">AI Ad<br>Studio</span><span class="cover__row"><span>Video ads · KILIG</span></span>
             <svg class="cover__star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5c.6 4.6 2.6 7 8.5 8.5-5.9 1.5-7.9 3.9-8.5 8.5-.6-4.6-2.6-7-8.5-8.5 5.9-1.5 7.9-3.9 8.5-8.5Z" fill="currentColor"/></svg></span>
@@ -724,30 +770,6 @@ a.card__box:hover h3{color:var(--red)}
           <p class="card__note">prompt, generate, fix by hand</p>
           <p class="card__sub">Product imagery and video ads without a full shoot: prompt, generate, then retouch and brand-check by hand.</p>
           <p class="card__tags"><span>AI video</span><span>Prompt writing</span><span>Workflow design</span></p>
-        </a>
-      </li>
-      <li style="--i:9;--r:2.6deg" class="card">
-        <div class="card__box">
-          <span class="cover cover--ink cover--art" style="--bg:url('/_vercel/image?url=%2Fwork%2Fimg%2Fhf_d53a1483-0d0b-48a3-a19e-66fc8e091af4.webp&amp;w=1200&amp;q=75')"><span class="cover__row"><span>Marketplace + quick commerce</span><span>04</span></span><span class="cover__word">Nev</span><span class="cover__row"><span>Listings · Packaging</span></span>
-            <svg class="cover__star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5c.6 4.6 2.6 7 8.5 8.5-5.9 1.5-7.9 3.9-8.5 8.5-.6-4.6-2.6-7-8.5-8.5 5.9-1.5 7.9-3.9 8.5-8.5Z" fill="currentColor"/></svg></span>
-          <p class="card__meta"><span>Client work</span><span>2025</span></p>
-          <h3 class="card__title">Nev</h3>
-          <p class="card__note">has to sell at thumbnail size</p>
-          <p class="card__sub">A listing system that sells at thumbnail size, across every marketplace.</p>
-          <p class="card__tags"><span>E-commerce</span><span>Listing images</span><span>Packaging</span></p>
-        </div>
-      </li>
-      <li style="--i:10;--r:-1.9deg" class="card card--wide">
-        <a class="card__box" href="https://www.behance.net/nanduprasad1" target="_blank" rel="noopener">
-          <span class="cover cover--red cover--art" style="--bg:url('/_vercel/image?url=%2Fwork%2Fimg%2Fhf_79c30959-9d8b-4703-82ca-dfe4966010e2.webp&amp;w=1200&amp;q=75')"><span class="cover__row"><span>Motif Design Co · 3Dot Corp</span><span>05</span></span><span class="cover__word">Identity systems</span><span class="cover__row"><span>Logos · Guidelines · Social &amp; print</span></span>
-            <svg class="cover__star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5c.6 4.6 2.6 7 8.5 8.5-5.9 1.5-7.9 3.9-8.5 8.5-.6-4.6-2.6-7-8.5-8.5 5.9-1.5 7.9-3.9 8.5-8.5Z" fill="currentColor"/></svg>
-            <span class="view" aria-hidden="true">See it on Behance ↗</span></span>
-          <p class="card__meta"><span>Identity</span><span>2023</span></p>
-          <h3 class="card__title">Identity systems</h3>
-          <p class="card__note">logos that came with rules</p>
-          <p class="card__sub">Logos, palettes and guidelines for client businesses, plus the social and print work that followed.</p>
-          <p class="card__tags"><span>Logo design</span><span>Brand guidelines</span><span>Social &amp; print</span></p>
-          <span class="card__cta" aria-hidden="true">See it on Behance ↗</span>
         </a>
       </li>
     </ul>
@@ -882,35 +904,50 @@ tiles.forEach(function(t){t.addEventListener('pointermove',function(e){var r=t.g
 
   /* work deck */
   var deck = document.querySelector('[data-deck]');
-  if (deck && !reduce) {
-    var cards = [].slice.call(deck.children), boxes = cards.map(function(c){ return c.querySelector('.card__box'); });
-    var imgs = cards.map(function(c){ return c.querySelector('.cover--img>img'); });
-    var tilts = cards.map(function(c){ return parseFloat(getComputedStyle(c).getPropertyValue('--r')) || 0; });
-    var meter = document.querySelector('.deck__meter'), mN = meter.querySelector('[data-deck-n]'), mName = meter.querySelector('[data-deck-name]');
-    meter.querySelector('[data-deck-total]').textContent = cards.length;
-    var names = cards.map(function(c){ return c.querySelector('h3').textContent; });
-    var ticking = false, cur = -1, pins = [];
-    function measure(){ pins = cards.map(function(c){ return parseFloat(getComputedStyle(c).top) || 0; }); }
+  if (deck) {
+    var all = [].slice.call(deck.children), cards = all.slice();
+    var meter = document.querySelector('.deck__meter'), mN = meter.querySelector('[data-deck-n]'), mName = meter.querySelector('[data-deck-name]'), mT = meter.querySelector('[data-deck-total]');
+    var ticking = false, cur = -1, pins = [], tilts = [];
     function clamp(v){ return Math.min(Math.max(v, 0), 1); }
+    function box(c){ return c.querySelector('.card__box'); }
+    function measure(){
+      pins = cards.map(function(c){ return parseFloat(getComputedStyle(c).top) || 0; });
+      tilts = cards.map(function(c){ return parseFloat(getComputedStyle(c).getPropertyValue('--r')) || 0; });
+    }
     function frame(){
       ticking = false;
+      if (reduce || !cards.length) return;
       var vh = innerHeight, rects = cards.map(function(c){ return c.getBoundingClientRect(); }), active = 0;
       for (var i = 0; i < cards.length; i++) {
-        var r = rects[i], pin = pins[i];
-        var e = clamp((r.top - pin) / (vh * .7));                    /* 1 = still arriving, 0 = landed */
-        var p = i < cards.length - 1 ? 1 - clamp((rects[i+1].top - r.top) / r.height) : 0; /* 1 = buried */
-        var rot = tilts[i] * e - tilts[i] * .55 * p, sc = 1 - .08 * p, y = e * 40;
-        boxes[i].style.transform = 'translateY(' + y.toFixed(1) + 'px) rotate(' + rot.toFixed(3) + 'deg) scale(' + sc.toFixed(4) + ')';
-        boxes[i].style.setProperty('--dim', (p * .5).toFixed(3));
-        if (imgs[i]) imgs[i].style.setProperty('--z', (1 + .12 * clamp(r.top / vh)).toFixed(4));
+        var r = rects[i], e = clamp((r.top - pins[i]) / (vh * .7));
+        var p = i < cards.length - 1 ? 1 - clamp((rects[i+1].top - r.top) / r.height) : 0;
+        var rot = tilts[i] * e - tilts[i] * .55 * p, sc = 1 - .08 * p, b = box(cards[i]);
+        b.style.transform = 'translateY(' + (e * 40).toFixed(1) + 'px) rotate(' + rot.toFixed(3) + 'deg) scale(' + sc.toFixed(4) + ')';
+        b.style.setProperty('--dim', (p * .5).toFixed(3));
+        var img = cards[i].querySelector('.cover--img>img'); if (img) img.style.setProperty('--z', (1 + .12 * clamp(r.top / vh)).toFixed(4));
         if (r.top < vh * .55) active = i;
       }
       var n = cards.length - 1;
       meter.classList.toggle('on', rects[0].top < vh * .5 && rects[n].top >= pins[n] - 4);
-      if (active !== cur) { cur = active; mN.textContent = active + 1; mName.textContent = names[active]; }
+      if (active !== cur) { cur = active; mN.textContent = active + 1; mName.textContent = cards[active].querySelector('h3').textContent; }
     }
     function req(){ if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
-    addEventListener('scroll', req, { passive: true }); addEventListener('resize', function(){ measure(); req(); }); measure(); frame();
+    function apply(f){
+      cards = all.filter(function(c){ return f === 'all' || (' ' + c.dataset.cat + ' ').indexOf(' ' + f + ' ') > -1; });
+      all.forEach(function(c){ c.hidden = cards.indexOf(c) < 0; var b = box(c); b.style.transform = ''; b.style.setProperty('--dim', 0); });
+      cards.forEach(function(c, i){ c.style.setProperty('--i', i); });
+      mT.textContent = cards.length; cur = -1; measure(); frame();
+    }
+    document.querySelectorAll('.deck__f button').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('.deck__f button').forEach(function(x){ x.setAttribute('aria-pressed', x === btn ? 'true' : 'false'); });
+        var start = deck.getBoundingClientRect().top + scrollY - 90, wasPast = scrollY > start;
+        apply(btn.dataset.f);
+        if (wasPast) scrollTo({ top: start, behavior: 'instant' });
+      });
+    });
+    addEventListener('scroll', req, { passive: true }); addEventListener('resize', function(){ measure(); req(); });
+    measure(); frame();
   }
 
   /* copy */

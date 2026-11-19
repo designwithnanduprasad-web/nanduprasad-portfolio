@@ -30,7 +30,7 @@
   root.classList.add('pl-run', 'pl-hold', 'pl-lock');
   var IMG = '/_vercel/image?url=%2FNEW%403x.png&w=1200&q=75';
   var V = '/_vercel/image?url=%2Fwork%2Fimg%2F', Q = '&w=1600&q=75';
-  var PHOTOS = [IMG, V + 'intro-1.webp' + Q, V + 'intro-2.webp' + Q, V + 'intro-3.webp' + Q, V + 'intro-4.webp' + Q];
+  var PHOTOS = [V + 'intro-3.webp' + Q, V + 'intro-1.webp' + Q, V + 'intro-2.webp' + Q, V + 'intro-3.webp' + Q, V + 'intro-4.webp' + Q];
   var CARDS = { ryken: { cls: 'ink', word: 'Ryken', meta: 'ryken.in' }, kilig: { cls: 'red', word: 'Kilig', meta: 'mykilig.com' }, nev: { cls: 'sheet', word: 'Nev', meta: 'marketplace + quick commerce' } };
   var SEQ = [
     { ms: 420, w: 'NEED' }, { ms: 360, p: 1 }, { ms: 310, w: 'MONEY' }, { ms: 270, p: 2 }, { ms: 230, w: 'FOR' },
@@ -61,7 +61,7 @@
       if (f.w) {
         var s = d.createElement('span'); s.className = 'pl-word'; s.textContent = f.w; fit(s, f.w, f.full); frame.appendChild(s);
       } else if (f.p) {
-        var src = PHOTOS[f.p - 1] || IMG, p = d.createElement('div'); p.className = 'pl-photo' + (f.flip ? ' flip' : '') + (f.p > 1 ? ' full' : ''); p.style.backgroundImage = 'url("' + src + '")'; frame.appendChild(p);
+        var src = PHOTOS[f.p - 1] || IMG, p = d.createElement('div'); p.className = 'pl-photo' + (f.flip ? ' flip' : '') + ' full'; p.style.backgroundImage = 'url("' + src + '")'; frame.appendChild(p);
       } else if (f.c) {
         var c = CARDS[f.c]; frame.className = 'pl-frame pl-card ' + c.cls;
         var m = d.createElement('span'); m.className = 'pl-meta'; m.textContent = c.meta;

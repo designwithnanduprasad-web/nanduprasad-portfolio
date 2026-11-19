@@ -1,12 +1,16 @@
 {
   "cleanUrls": true,
   "images": {
-    "sizes": [480, 800, 1200, 1600, 3840],
-    "formats": ["image/webp"],
-    "minimumCacheTTL": 2592000,
-    "remotePatterns": [
-      { "protocol": "https", "hostname": "d8j0ntlcm91z4.cloudfront.net" },
-      { "protocol": "https", "hostname": "images.unsplash.com" }
-    ]
+    "sizes": [
+      480,
+      800,
+      1200,
+      1600,
+      3840
+    ],
+    "formats": [
+      "image/webp"
+    ],
+    "minimumCacheTTL": 2592000
   }
 }

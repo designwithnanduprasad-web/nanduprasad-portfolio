@@ -436,43 +436,64 @@ a.card__box:hover h3{color:var(--red)}
 .giant{display:block;margin-top:18px;font-family:var(--display);color:var(--red);font-size:clamp(56px,15.4vw,260px);line-height:.8;text-transform:uppercase;white-space:nowrap}
 
 /* ---------- Work: stacking deck ---------- */
-.deck__head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.deck__hint{margin:0 0 .6em;font-family:var(--hand);color:var(--red);font-size:clamp(22px,2.2vw,34px);line-height:1.2;transform:rotate(-4deg)}
-.deck__meter{position:sticky;top:12px;z-index:30;width:max-content;margin:clamp(28px,4vw,56px) 0 -46px auto;padding:7px 14px;border-radius:999px;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;letter-spacing:.02em;opacity:0;transform:translateY(-6px);transition:opacity .35s var(--ease),transform .35s var(--ease);pointer-events:none}
-.deck__meter.on{opacity:1;transform:none}
-.deck__name{margin-left:8px;color:var(--red)}
-.grid.deck{display:block;margin-top:58px}
-.deck>.card{position:sticky;top:calc(56px + var(--i)*10px);margin:0 0 clamp(28px,4vw,56px)}
+.deck__head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px 40px;flex-wrap:wrap}
+.deck__hint{position:relative;margin:0 4px 6px 0;font-family:var(--hand);color:var(--red);font-size:clamp(22px,2vw,30px);line-height:1.25;transform:rotate(-5deg);text-align:right}
+.deck__hint svg{display:block;margin:4px 0 0 auto;transform:rotate(8deg)}
+.deck__meter{position:sticky;top:14px;z-index:30;display:flex;align-items:baseline;gap:6px;width:max-content;margin:56px 0 -42px auto;padding:6px 16px 7px 14px;border-radius:999px;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;opacity:0;transform:translateY(-8px) rotate(2deg);transition:opacity .35s var(--ease),transform .5s var(--ease-big);pointer-events:none}
+.deck__meter.on{opacity:1;transform:rotate(2deg)}
+.deck__meter b{font-family:var(--display);font-weight:400;font-size:22px;line-height:1;color:var(--red)}
+.deck__meter i{font-style:normal;opacity:.6}
+.deck__name{margin-left:8px}
+.grid.deck{display:block;margin:64px 0 0}
+.deck>.card{position:sticky;top:calc(64px + var(--i)*9px);margin:0 0 48px}
 .deck>.card:last-child{margin-bottom:0}
-.deck .card__box{--dim:0;position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:1fr auto auto;column-gap:clamp(20px,3vw,48px);height:min(74svh,660px);padding:clamp(16px,1.8vw,26px);background:var(--ink);color:var(--paper);transform-origin:50% 0;box-shadow:0 -18px 40px -24px rgba(23,22,21,.55);will-change:transform}
+.deck .card__box{--dim:0;position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:auto auto auto auto 1fr auto auto;column-gap:48px;height:min(76svh,680px);padding:32px;background:var(--ink);color:var(--paper);text-decoration:none;transform-origin:50% 30%;box-shadow:0 30px 60px -36px rgba(23,22,21,.6),0 -10px 30px -22px rgba(23,22,21,.5);will-change:transform}
 .deck .card__box::after{content:"";position:absolute;inset:0;background:var(--ink);opacity:var(--dim);pointer-events:none}
 .deck>.card:nth-child(3n+2) .card__box{background:var(--red);color:#fff}
 .deck>.card:nth-child(3n) .card__box{background:var(--sheet);color:var(--ink);outline:2px solid var(--ink);outline-offset:-2px}
-.deck .cover{grid-column:2;grid-row:1/-1;aspect-ratio:auto!important;height:100%;min-height:0}
-.deck .card__row{grid-column:1;grid-row:1;align-self:start;flex-direction:column;align-items:flex-start;gap:10px;margin:0}
-.deck .card h3{order:2;font-size:clamp(46px,5.6vw,104px);line-height:.86;text-wrap:balance}
-.deck .card__year{order:1;color:inherit;opacity:.7}
-.deck .card__sub{grid-column:1;grid-row:2;margin:0;max-width:34ch;font-size:clamp(15px,1.15vw,18px);color:inherit}
-.deck .card__tags{grid-column:1;grid-row:3;margin:14px 0 0;color:inherit;opacity:.65}
-.deck a.card__box:hover h3{color:inherit}
-.deck>.card:nth-child(3n) a.card__box:hover h3,.deck>.card:nth-child(3n+1) a.card__box:hover h3{color:var(--red)}
-.deck .cover--img>img{transform:scale(var(--z,1));transition:none}
-.deck .cover__tag{transform:rotate(-5deg);box-shadow:2px 2px 0 var(--ink)}
+.deck .cover{grid-column:2;grid-row:1/-1;aspect-ratio:auto!important;height:100%;min-height:0;transition:transform .6s var(--ease)}
+.deck .view{display:none}
+.deck .cover__tag{display:none}
+.card__meta{grid-column:1;grid-row:1;display:flex;justify-content:space-between;gap:12px;margin:0;padding-bottom:12px;border-bottom:1.5px solid currentColor;font-family:var(--mono);font-size:12px;letter-spacing:.02em}
+.card__meta span:first-child{padding:3px 10px;margin:-3px 0 0 -2px;border-radius:999px;background:var(--paper);color:var(--ink);transform:rotate(-3deg)}
+.deck>.card:nth-child(3n) .card__meta span:first-child{background:var(--red);color:#fff}
+.deck .card__title{grid-column:1;grid-row:2;margin:24px 0 0;font-family:var(--display);font-weight:400;font-size:clamp(56px,6.4vw,120px);line-height:.9;letter-spacing:.005em;text-transform:uppercase;text-wrap:balance;transition:transform .6s var(--ease)}
+.card__note{grid-column:1;grid-row:3;justify-self:start;margin:14px 0 0;font-family:var(--hand);font-size:clamp(19px,1.6vw,24px);line-height:1.3;color:var(--red);transform:rotate(-2.5deg);transform-origin:0 50%}
+.deck>.card:nth-child(3n+2) .card__note{color:var(--ink)}
+.deck .card__sub{grid-column:1;grid-row:4;margin:24px 0 0;max-width:30ch;font-size:clamp(16px,1.25vw,19px);line-height:1.42;color:inherit}
+.deck .card__tags{grid-column:1;grid-row:6;display:flex;flex-wrap:wrap;gap:6px;margin:0;color:inherit;opacity:1;font-size:11px;letter-spacing:.02em;text-transform:none}
+.card__tags span{padding:5px 10px;border:1.5px solid currentColor;border-radius:999px;opacity:.8}
+.card__cta{grid-column:1;grid-row:7;justify-self:start;margin-top:18px;font-family:var(--mono);font-size:12px;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1.5px}
+.deck.live .card__cta{display:none}
 .deck a.card__box:focus-visible{outline:3px solid var(--red);outline-offset:4px}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .deck a.card__box:hover .cover{transform:rotate(1.2deg) scale(1.015)}
+  .deck a.card__box:hover .card__title{transform:translateX(8px) rotate(-1deg)}
+  .deck.live a.card__box{cursor:none}
+}
 /* sticker cursor */
-.sticker{position:fixed;left:0;top:0;z-index:95;display:grid;place-items:center;width:104px;height:104px;margin:-52px 0 0 -52px;border-radius:50%;background:var(--red);color:#fff;font-family:var(--mono);font-size:12px;line-height:1.2;text-align:center;text-transform:lowercase;pointer-events:none;transform:translate3d(var(--x,-200px),var(--y,-200px),0) scale(var(--s,0)) rotate(-8deg);transition:transform .1s linear}
-.sticker.dark{background:var(--ink)}
-@media (hover:hover) and (pointer:fine){.deck.live .view{display:none}.deck.live a.card__box{cursor:none}}
+.sticker{position:fixed;left:0;top:0;z-index:95;display:grid;place-items:center;width:112px;height:112px;margin:-56px 0 0 -56px;pointer-events:none;color:#fff;font-family:var(--mono);font-size:12px;line-height:1.25;text-align:center;transform:translate3d(var(--x,-200px),var(--y,-200px),0) rotate(var(--rot,0deg)) scale(var(--s,0));transition:transform .12s linear}
+.sticker svg{position:absolute;inset:0;width:100%;height:100%;color:var(--red)}
+.sticker.dark svg{color:var(--ink)}
+.sticker span{position:relative;max-width:70px}
+@media (prefers-reduced-motion:no-preference){.sticker svg{animation:spin 9s linear infinite}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:900px){
+  .deck .card__box{column-gap:28px;padding:24px}
+  .deck .card__title{font-size:clamp(44px,6.6vw,76px)}
+}
 @media (max-width:760px){
-  .deck>.card{top:calc(48px + var(--i)*7px)}
-  .deck .card__box{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto auto auto;height:min(calc(100svh - 120px),600px)}
-  .deck .cover{grid-column:1;grid-row:1;margin-bottom:14px}
-  .deck .card__row{grid-row:2;flex-direction:row;align-items:baseline;justify-content:space-between;width:100%}
-  .deck .card h3{order:0;font-size:clamp(34px,10vw,52px)}
-  .deck .card__sub{grid-row:3;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .deck .card__tags{grid-row:4;margin-top:8px}
-  .deck .view{opacity:1;transform:none}
-  .deck__meter{margin-bottom:-38px}
+  .deck__meter{margin-bottom:-36px}
+  .grid.deck{margin-top:48px}
+  .deck>.card{top:calc(56px + var(--i)*6px);margin-bottom:32px}
+  .deck .card__box{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr) auto auto auto auto auto;height:min(calc(100svh - 110px),640px);padding:16px}
+  .card__meta{grid-row:1;padding-bottom:10px}
+  .deck .cover{grid-column:1;grid-row:2;margin:14px 0 0}
+  .deck .card__title{grid-row:3;margin-top:16px;font-size:clamp(38px,11vw,56px)}
+  .card__note{grid-row:4;margin-top:8px;font-size:19px}
+  .deck .card__sub{grid-row:5;margin-top:10px;font-size:15px;max-width:none;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .deck .card__tags{display:none}
+  .card__cta{grid-row:6;margin-top:12px}
 }
 @media (prefers-reduced-motion:reduce){
   .deck>.card{position:relative;top:auto}
@@ -601,104 +622,135 @@ a.card__box:hover h3{color:var(--red)}
   <div class="wrap">
     <div class="deck__head">
       <h2 data-reveal>Stuff I made <em>(and made up)</em></h2>
-      <p class="deck__hint" data-reveal aria-hidden="true">they stack. keep scrolling.</p>
+      <p class="deck__hint" data-reveal aria-hidden="true">they stack.<br>keep scrolling <svg viewBox="0 0 40 46" width="34" height="40"><path d="M8 3c14 6 22 18 17 34M17 31l8 7 6-10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
     </div>
-    <p class="deck__meter" aria-hidden="true"><span data-deck-n>1</span> of <span data-deck-total>11</span> <span class="deck__name" data-deck-name>KILIG Nexa Core</span></p>
+    <p class="deck__meter" aria-hidden="true"><b data-deck-n>1</b><i>/<span data-deck-total>11</span></i><span class="deck__name" data-deck-name>KILIG Nexa Core</span></p>
     <ul class="grid deck" data-deck>
-      <li style="--i:0" class="card card--wide" data-reveal>
+      <li style="--i:0;--r:-2.6deg" class="card card--wide" data-reveal>
         <a class="card__box" href="/work/kilig-nexa-core">
           <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_63442438-1a29-4b73-abea-ebd6c7bb15d9.webp&amp;w=1600&amp;q=75" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_63442438-1a29-4b73-abea-ebd6c7bb15d9.webp&amp;w=800&amp;q=75 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_63442438-1a29-4b73-abea-ebd6c7bb15d9.webp&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_63442438-1a29-4b73-abea-ebd6c7bb15d9.webp&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 1320px) 100vw, 1320px" alt="KILIG Nexa Core air fryer retail box" loading="lazy" decoding="async"><span class="cover__tag">Client work</span><span class="view" aria-hidden="true">Read case study →</span></span>
-          <div class="card__row"><h3>KILIG Nexa Core</h3><span class="card__year">2025</span></div>
+          <p class="card__meta"><span>Client work</span><span>2025</span></p>
+          <h3 class="card__title">KILIG Nexa Core</h3>
+          <p class="card__note">the glass does the talking</p>
           <p class="card__sub">Retail packaging for a glass air fryer. The box leads with the glass, not the numbers.</p>
-          <p class="card__tags">KILIG · Packaging · Retail carton</p>
+          <p class="card__tags"><span>KILIG</span><span>Packaging</span><span>Retail carton</span></p>
+          <span class="card__cta" aria-hidden="true">Read case study →</span>
         </a>
       </li>
-      <li style="--i:1" class="card card--wide" data-reveal>
+      <li style="--i:1;--r:2.1deg" class="card card--wide" data-reveal>
         <a class="card__box" href="/work/kilig-mykilig-app">
           <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fmykilig-hero.webp&amp;w=1600&amp;q=80" srcset="/_vercel/image?url=%2Fwork%2Fmykilig-hero.webp&amp;w=800&amp;q=80 800w, /_vercel/image?url=%2Fwork%2Fmykilig-hero.webp&amp;w=1600&amp;q=80 1600w" sizes="(max-width: 1320px) 100vw, 1320px" alt="MyKilig app screens: welcome, home and cooking timer" loading="lazy" decoding="async" style="object-position:center 40%"><span class="cover__tag">Client work</span><span class="view" aria-hidden="true">Read case study →</span></span>
-          <div class="card__row"><h3>MyKilig app</h3><span class="card__year">2025</span></div>
+          <p class="card__meta"><span>Client work</span><span>2025</span></p>
+          <h3 class="card__title">MyKilig app</h3>
+          <p class="card__note">no more babysitting fries</p>
           <p class="card__sub">One app for KILIG&rsquo;s air fryer, ice maker and car fridge, designed so you never have to stand and watch your food.</p>
-          <p class="card__tags">KILIG · App UI/UX · 30 screens</p>
+          <p class="card__tags"><span>KILIG</span><span>App UI/UX</span><span>30 screens</span></p>
+          <span class="card__cta" aria-hidden="true">Read case study →</span>
         </a>
       </li>
-      <li style="--i:2" class="card card--wide" data-reveal>
+      <li style="--i:2;--r:-1.6deg" class="card card--wide" data-reveal>
         <a class="card__box" href="/work/kilig-wine-cooler">
           <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fkilig-wc18-ad.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fkilig-wc18-ad.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fkilig-wc18-ad.webp&amp;w=1200&amp;q=78 1200w" sizes="(max-width: 1320px) 100vw, 1320px" alt="KILIG WC-18 wine cooler with wine bottles, grapes and ice on deep blue" loading="lazy" decoding="async"><span class="cover__tag">Client work</span><span class="view" aria-hidden="true">Read case study →</span></span>
-          <div class="card__row"><h3>KILIG WC-18 Wine Cooler</h3><span class="card__year">2025</span></div>
+          <p class="card__meta"><span>Client work</span><span>2025</span></p>
+          <h3 class="card__title">KILIG WC-18 Wine Cooler</h3>
+          <p class="card__note">no studio was harmed</p>
           <p class="card__sub">A cinematic AI video ad and an eight-image Amazon listing for a compact wine cooler.</p>
-          <p class="card__tags">KILIG · AI video · Amazon listing</p>
+          <p class="card__tags"><span>KILIG</span><span>AI video</span><span>Amazon listing</span></p>
+          <span class="card__cta" aria-hidden="true">Read case study →</span>
         </a>
       </li>
-      <li style="--i:3" class="card card--wide" data-reveal>
+      <li style="--i:3;--r:2.8deg" class="card card--wide" data-reveal>
         <a class="card__box" href="/work/ooru">
           <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=1200&amp;q=75" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=800&amp;q=75 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 1320px) 100vw, 1320px" alt="Ooru coffee brand flat-lay" loading="lazy" decoding="async"><span class="cover__tag">Concept</span><span class="view" aria-hidden="true">Read case study →</span></span>
-          <div class="card__row"><h3>Ooru</h3><span class="card__year">2026</span></div>
+          <p class="card__meta"><span>Concept</span><span>2026</span></p>
+          <h3 class="card__title">Ooru</h3>
+          <p class="card__note">tumbler-approved</p>
           <p class="card__sub">A Bengaluru filter-coffee brand built from the steel tumbler on every darshini counter.</p>
-          <p class="card__tags">Concept · Brand identity · Packaging · Signage</p>
+          <p class="card__tags"><span>Concept</span><span>Brand identity</span><span>Packaging</span><span>Signage</span></p>
+          <span class="card__cta" aria-hidden="true">Read case study →</span>
         </a>
       </li>
-      <li style="--i:4" class="card" data-reveal>
+      <li style="--i:4;--r:-2.2deg" class="card" data-reveal>
         <a class="card__box" href="/work/thali-theory">
           <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.webp&amp;w=1200&amp;q=75" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.webp&amp;w=800&amp;q=75 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.webp&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.webp&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 760px) 100vw, 640px" alt="Thali Theory spice-kit boxes" loading="lazy" decoding="async"><span class="cover__tag">Concept</span><span class="view" aria-hidden="true">Read case study →</span></span>
-          <div class="card__row"><h3>Thali Theory</h3><span class="card__year">2026</span></div>
+          <p class="card__meta"><span>Concept</span><span>2026</span></p>
+          <h3 class="card__title">Thali Theory</h3>
+          <p class="card__note">one colour per dish</p>
           <p class="card__sub">Spice-kit packaging that sells the dish, not the brand: one colour per dish, three steps per box.</p>
-          <p class="card__tags">Concept · Packaging · Range design</p>
+          <p class="card__tags"><span>Concept</span><span>Packaging</span><span>Range design</span></p>
+          <span class="card__cta" aria-hidden="true">Read case study →</span>
         </a>
       </li>
-      <li style="--i:5" class="card" data-reveal>
+      <li style="--i:5;--r:1.4deg" class="card" data-reveal>
         <a class="card__box" href="/work/steep">
           <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=1200&amp;q=75" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=800&amp;q=75 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 760px) 100vw, 640px" alt="Steep smart kettle product shot" loading="lazy" decoding="async"><span class="cover__tag">Concept</span><span class="view" aria-hidden="true">Read case study →</span></span>
-          <div class="card__row"><h3>Steep</h3><span class="card__year">2026</span></div>
+          <p class="card__meta"><span>Concept</span><span>2026</span></p>
+          <h3 class="card__title">Steep</h3>
+          <p class="card__note">zero shoots, all kettle</p>
           <p class="card__sub">A smart-kettle launch campaign made entirely with generative AI. No studio, no shoot.</p>
-          <p class="card__tags">Concept · AI ad campaign · Art direction</p>
+          <p class="card__tags"><span>Concept</span><span>AI ad campaign</span><span>Art direction</span></p>
+          <span class="card__cta" aria-hidden="true">Read case study →</span>
         </a>
       </li>
-      <li style="--i:6" class="card" data-reveal>
+      <li style="--i:6;--r:-2.9deg" class="card" data-reveal>
         <a class="card__box" href="https://ryken.in" target="_blank" rel="noopener">
           <span class="cover cover--ink cover--art" style="--bg:url('/_vercel/image?url=%2Fwork%2Fimg%2Fhf_a91bc7c1-4056-44c6-a514-3f4f4077f015.webp&amp;w=1200&amp;q=75')"><span class="cover__row"><span>ryken.in</span><span>01</span></span><span class="cover__word">Ryken</span><span class="cover__row"><span>Web · Shopify · Brand launch</span></span>
             <svg class="cover__star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5c.6 4.6 2.6 7 8.5 8.5-5.9 1.5-7.9 3.9-8.5 8.5-.6-4.6-2.6-7-8.5-8.5 5.9-1.5 7.9-3.9 8.5-8.5Z" fill="currentColor"/></svg>
             <span class="view" aria-hidden="true">Visit site ↗</span></span>
-          <div class="card__row"><h3>Ryken</h3><span class="card__year">2025</span></div>
+          <p class="card__meta"><span>Client site</span><span>2025</span></p>
+          <h3 class="card__title">Ryken</h3>
+          <p class="card__note">launched from a blank page</p>
           <p class="card__sub">Launching a kitchen-appliance brand online, built around its first product.</p>
-          <p class="card__tags">Web design · Shopify · Brand launch</p>
+          <p class="card__tags"><span>Web design</span><span>Shopify</span><span>Brand launch</span></p>
+          <span class="card__cta" aria-hidden="true">Visit site ↗</span>
         </a>
       </li>
-      <li style="--i:7" class="card" data-reveal>
+      <li style="--i:7;--r:2.3deg" class="card" data-reveal>
         <a class="card__box" href="https://mykilig.com" target="_blank" rel="noopener">
           <span class="cover cover--red cover--art" style="--bg:url('/_vercel/image?url=%2Fwork%2Fimg%2Fhf_903af959-b8c2-47c4-860a-46c5a5d458a3.webp&amp;w=1200&amp;q=75')"><span class="cover__row"><span>mykilig.com</span><span>02</span></span><span class="cover__word">Kilig</span><span class="cover__row"><span>Web · Listings · Packaging</span></span>
             <svg class="cover__star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5c.6 4.6 2.6 7 8.5 8.5-5.9 1.5-7.9 3.9-8.5 8.5-.6-4.6-2.6-7-8.5-8.5 5.9-1.5 7.9-3.9 8.5-8.5Z" fill="currentColor"/></svg>
             <span class="view" aria-hidden="true">Visit site ↗</span></span>
-          <div class="card__row"><h3>Kilig</h3><span class="card__year">2025</span></div>
+          <p class="card__meta"><span>Client site</span><span>2025</span></p>
+          <h3 class="card__title">Kilig</h3>
+          <p class="card__note">very different appliances, one store</p>
           <p class="card__sub">Turning a catalogue of very different appliances into one store that’s easy to shop.</p>
-          <p class="card__tags">Web design · Shopify · Listings · Packaging</p>
+          <p class="card__tags"><span>Web design</span><span>Shopify</span><span>Listings</span><span>Packaging</span></p>
+          <span class="card__cta" aria-hidden="true">Visit site ↗</span>
         </a>
       </li>
-      <li style="--i:8" class="card" data-reveal>
+      <li style="--i:8;--r:-1.3deg" class="card" data-reveal>
         <a class="card__box" href="/work/ai-ad-studio">
           <span class="cover cover--sheet cover--art" style="--bg:url('/_vercel/image?url=%2Fwork%2Fimg%2Fhf_1334ad03-2037-48bd-8f42-45d9d4e3c5b8.webp&amp;w=1200&amp;q=75')"><span class="cover__row"><span>Higgsfield · ChatGPT · Claude</span><span>03</span></span><span class="cover__word">AI Ad<br>Studio</span><span class="cover__row"><span>Video ads · KILIG</span></span>
             <svg class="cover__star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5c.6 4.6 2.6 7 8.5 8.5-5.9 1.5-7.9 3.9-8.5 8.5-.6-4.6-2.6-7-8.5-8.5 5.9-1.5 7.9-3.9 8.5-8.5Z" fill="currentColor"/></svg></span>
-          <div class="card__row"><h3>AI Ad Studio</h3><span class="card__year">2025</span></div>
+          <p class="card__meta"><span>Workflow</span><span>2025</span></p>
+          <h3 class="card__title">AI Ad Studio</h3>
+          <p class="card__note">prompt, generate, fix by hand</p>
           <p class="card__sub">Product imagery and video ads without a full shoot: prompt, generate, then retouch and brand-check by hand.</p>
-          <p class="card__tags">AI video · Prompt writing · Workflow design</p>
+          <p class="card__tags"><span>AI video</span><span>Prompt writing</span><span>Workflow design</span></p>
         </a>
       </li>
-      <li style="--i:9" class="card" data-reveal>
+      <li style="--i:9;--r:2.6deg" class="card" data-reveal>
         <div class="card__box">
           <span class="cover cover--ink cover--art" style="--bg:url('/_vercel/image?url=%2Fwork%2Fimg%2Fhf_d53a1483-0d0b-48a3-a19e-66fc8e091af4.webp&amp;w=1200&amp;q=75')"><span class="cover__row"><span>Marketplace + quick commerce</span><span>04</span></span><span class="cover__word">Nev</span><span class="cover__row"><span>Listings · Packaging</span></span>
             <svg class="cover__star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5c.6 4.6 2.6 7 8.5 8.5-5.9 1.5-7.9 3.9-8.5 8.5-.6-4.6-2.6-7-8.5-8.5 5.9-1.5 7.9-3.9 8.5-8.5Z" fill="currentColor"/></svg></span>
-          <div class="card__row"><h3>Nev</h3><span class="card__year">2025</span></div>
+          <p class="card__meta"><span>Client work</span><span>2025</span></p>
+          <h3 class="card__title">Nev</h3>
+          <p class="card__note">has to sell at thumbnail size</p>
           <p class="card__sub">A listing system that sells at thumbnail size, across every marketplace.</p>
-          <p class="card__tags">E-commerce · Listing images · Packaging</p>
+          <p class="card__tags"><span>E-commerce</span><span>Listing images</span><span>Packaging</span></p>
         </div>
       </li>
-      <li style="--i:10" class="card card--wide" data-reveal>
+      <li style="--i:10;--r:-1.9deg" class="card card--wide" data-reveal>
         <a class="card__box" href="https://www.behance.net/nanduprasad1" target="_blank" rel="noopener">
           <span class="cover cover--red cover--art" style="--bg:url('/_vercel/image?url=%2Fwork%2Fimg%2Fhf_79c30959-9d8b-4703-82ca-dfe4966010e2.webp&amp;w=1200&amp;q=75')"><span class="cover__row"><span>Motif Design Co · 3Dot Corp</span><span>05</span></span><span class="cover__word">Identity systems</span><span class="cover__row"><span>Logos · Guidelines · Social &amp; print</span></span>
             <svg class="cover__star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5c.6 4.6 2.6 7 8.5 8.5-5.9 1.5-7.9 3.9-8.5 8.5-.6-4.6-2.6-7-8.5-8.5 5.9-1.5 7.9-3.9 8.5-8.5Z" fill="currentColor"/></svg>
             <span class="view" aria-hidden="true">See it on Behance ↗</span></span>
-          <div class="card__row"><h3>Identity systems</h3><span class="card__year">2023</span></div>
+          <p class="card__meta"><span>Identity</span><span>2023</span></p>
+          <h3 class="card__title">Identity systems</h3>
+          <p class="card__note">logos that came with rules</p>
           <p class="card__sub">Logos, palettes and guidelines for client businesses, plus the social and print work that followed.</p>
-          <p class="card__tags">Logo design · Brand guidelines · Social &amp; print</p>
+          <p class="card__tags"><span>Logo design</span><span>Brand guidelines</span><span>Social &amp; print</span></p>
+          <span class="card__cta" aria-hidden="true">See it on Behance ↗</span>
         </a>
       </li>
     </ul>
@@ -836,25 +888,26 @@ tiles.forEach(function(t){t.addEventListener('pointermove',function(e){var r=t.g
   if (deck && !reduce) {
     var cards = [].slice.call(deck.children), boxes = cards.map(function(c){ return c.querySelector('.card__box'); });
     var imgs = cards.map(function(c){ return c.querySelector('.cover--img>img'); });
+    var tilts = cards.map(function(c){ return parseFloat(getComputedStyle(c).getPropertyValue('--r')) || 0; });
     var meter = document.querySelector('.deck__meter'), mN = meter.querySelector('[data-deck-n]'), mName = meter.querySelector('[data-deck-name]');
     meter.querySelector('[data-deck-total]').textContent = cards.length;
     var names = cards.map(function(c){ return c.querySelector('h3').textContent; });
     var ticking = false, cur = -1;
+    function clamp(v){ return Math.min(Math.max(v, 0), 1); }
     function frame(){
       ticking = false;
-      var vh = innerHeight, rects = cards.map(function(c){ return c.getBoundingClientRect(); });
-      var active = 0;
+      var vh = innerHeight, rects = cards.map(function(c){ return c.getBoundingClientRect(); }), active = 0;
       for (var i = 0; i < cards.length; i++) {
-        var r = rects[i], p = 0;
-        if (i < cards.length - 1) { p = 1 - Math.min(Math.max((rects[i+1].top - r.top) / r.height, 0), 1); }
-        var tilt = (i % 2 ? -1 : 1) * 1.4 * p;
-        boxes[i].style.transform = p ? 'scale(' + (1 - .07 * p).toFixed(4) + ') rotate(' + tilt.toFixed(3) + 'deg)' : '';
-        boxes[i].style.setProperty('--dim', (p * .45).toFixed(3));
-        if (imgs[i]) { var q = Math.min(Math.max(r.top / vh, 0), 1); imgs[i].style.setProperty('--z', (1 + .14 * q).toFixed(4)); }
+        var r = rects[i], pin = parseFloat(getComputedStyle(cards[i]).top) || 0;
+        var e = clamp((r.top - pin) / (vh * .7));                    /* 1 = still arriving, 0 = landed */
+        var p = i < cards.length - 1 ? 1 - clamp((rects[i+1].top - r.top) / r.height) : 0; /* 1 = buried */
+        var rot = tilts[i] * e - tilts[i] * .55 * p, sc = 1 - .08 * p, y = e * 40;
+        boxes[i].style.transform = 'translateY(' + y.toFixed(1) + 'px) rotate(' + rot.toFixed(3) + 'deg) scale(' + sc.toFixed(4) + ')';
+        boxes[i].style.setProperty('--dim', (p * .5).toFixed(3));
+        if (imgs[i]) imgs[i].style.setProperty('--z', (1 + .12 * clamp(r.top / vh)).toFixed(4));
         if (r.top < vh * .55) active = i;
       }
-      var first = rects[0], last = rects[rects.length - 1];
-      meter.classList.toggle('on', first.top < vh * .5 && last.bottom > vh * .25);
+      meter.classList.toggle('on', rects[0].top < vh * .5 && rects[rects.length - 1].bottom > vh * .25);
       if (active !== cur) { cur = active; mN.textContent = active + 1; mName.textContent = names[active]; }
     }
     function req(){ if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
@@ -863,12 +916,17 @@ tiles.forEach(function(t){t.addEventListener('pointermove',function(e){var r=t.g
     /* sticker cursor */
     if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
       deck.classList.add('live');
-      var st = document.createElement('div'); st.className = 'sticker'; st.setAttribute('aria-hidden', 'true'); document.body.appendChild(st);
-      deck.addEventListener('pointermove', function(e){ st.style.setProperty('--x', e.clientX + 'px'); st.style.setProperty('--y', e.clientY + 'px'); });
+      var st = document.createElement('div'); st.className = 'sticker'; st.setAttribute('aria-hidden', 'true');
+      st.innerHTML = '<svg viewBox="0 0 100 100"><path d="M50 2l8 14 15-8 1 17 17-1-8 15 14 8-14 8 8 15-17-1-1 17-15-8-8 14-8-14-15 8-1-17-17 1 8-15-14-8 14-8-8-15 17 1 1-17 15 8z" fill="currentColor"/></svg><span></span>';
+      document.body.appendChild(st); var stL = st.querySelector('span'), lx = 0;
+      deck.addEventListener('pointermove', function(e){
+        var vx = Math.max(-24, Math.min(24, (e.clientX - lx) * .9)); lx = e.clientX;
+        st.style.setProperty('--x', e.clientX + 'px'); st.style.setProperty('--y', e.clientY + 'px'); st.style.setProperty('--rot', vx + 'deg');
+      });
       cards.forEach(function(c, i){
         var a = c.querySelector('a.card__box'); if (!a) return;
-        var v = c.querySelector('.view'), label = v ? v.textContent.trim() : 'open';
-        a.addEventListener('pointerenter', function(){ st.textContent = label.toLowerCase(); st.classList.toggle('dark', i % 3 !== 0); st.style.setProperty('--s', 1); });
+        var cta = c.querySelector('.card__cta'), label = cta ? cta.textContent.trim() : 'open';
+        a.addEventListener('pointerenter', function(){ stL.textContent = label.toLowerCase(); st.classList.toggle('dark', i % 3 !== 0); st.style.setProperty('--s', 1); });
         a.addEventListener('pointerleave', function(){ st.style.setProperty('--s', 0); });
       });
     }

@@ -440,7 +440,7 @@ a.card__box:hover h3{color:var(--red)}
 .shelf__bar{margin-top:48px}
 .shelves{margin-top:8px}
 .shelf{display:grid;grid-template-columns:minmax(220px,3fr) minmax(0,9fr);gap:24px clamp(28px,4vw,64px);padding:clamp(36px,5vw,64px) 0;border-top:2px solid var(--ink)}
-.shelf[hidden]{display:none}
+.shelves .shelf[hidden]{display:none!important}
 .shelf__h{align-self:start;position:sticky;top:24px}
 .shelf__n{margin:0;font-family:var(--display);font-size:clamp(40px,4.4vw,72px);line-height:.9;color:var(--red)}
 .shelf .shelf__t{margin:10px 0 0;font-family:var(--display);font-weight:400;font-size:clamp(34px,3.6vw,58px);line-height:.92;text-transform:uppercase;text-wrap:balance}
@@ -484,6 +484,31 @@ a.card__box:hover h3{color:var(--red)}
   .shelf__list>.shot-card:only-child,.shelf__list>.shot-card:first-child:nth-last-child(1){flex-basis:100%}
 }
 @media (prefers-reduced-motion:reduce){.shot-card__img img,.shot-card__go{transition:none}}
+/* shelves as scroll rails (desktop): vertical scroll drives the shelf sideways */
+.work{overflow-x:clip}
+.shelf__ghost,.shelf__p,.shelf__end{display:none}
+.shelves.is-rail .shelf{display:block;height:var(--h,100vh);padding:0;border-top:0}
+.is-rail .shelf__pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(18px,3.4vh,40px);margin-inline:calc(50% - 50vw);padding:0 calc(50vw - 50%);border-top:2px solid var(--ink)}
+.is-rail .shelf__ghost{display:block;position:absolute;left:calc(50vw - 50%);bottom:-.12em;font-family:var(--display);font-size:clamp(160px,24vw,420px);line-height:.8;text-transform:uppercase;white-space:nowrap;color:transparent;-webkit-text-stroke:2px rgba(23,22,21,.09);pointer-events:none;transform:translateX(var(--gx,0px));will-change:transform}
+.is-rail .shelf__h{position:relative;top:auto;display:flex;flex-wrap:wrap;align-items:baseline;column-gap:18px;row-gap:4px}
+.is-rail .shelf__n{font-size:clamp(40px,4vw,64px)}
+.is-rail .shelf .shelf__t,.shelves.is-rail .shelf__t{margin:0;font-size:clamp(44px,4.6vw,76px)}
+.is-rail .shelf__note{margin:0;transform:rotate(-3deg)}
+.is-rail .shelf__c{display:flex;align-items:center;gap:12px;margin:0 0 0 auto}
+.is-rail .shelf__p{display:block;position:relative;width:clamp(80px,10vw,160px);height:3px;background:var(--rule);overflow:hidden}
+.is-rail .shelf__p i{position:absolute;inset:0;background:var(--red);transform:scaleX(var(--p,0));transform-origin:0 50%}
+.is-rail .shelf__list,.is-rail .shelf__list--odd{position:relative;display:flex;align-items:flex-start;gap:clamp(24px,3vw,56px);width:max-content;transform:translate3d(var(--tx,0px),0,0);will-change:transform}
+.is-rail .shot-card{flex:none;width:min(34vw,64vh,600px);transform:translate3d(0,var(--cy,0px),0) rotate(var(--cr,0deg)) scale(var(--cs,1));transform-origin:50% 90%;will-change:transform}
+.is-rail .shelf__list--odd>.shot-card:first-child{grid-column:auto}
+.is-rail .shot-card__img,.is-rail .shelf__list--odd>.shot-card:first-child .shot-card__img{aspect-ratio:4/3;box-shadow:0 30px 50px -34px rgba(23,22,21,.7)}
+.is-rail .shot-card__img img{left:-8%;width:116%;max-width:none;transform:translate3d(var(--px,0px),0,0) scale(var(--zs,1));transition:transform .6s var(--ease)}
+.is-rail .shot-card__sub{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.is-rail .shelf__end{display:flex;align-items:center;align-self:center;flex:none;width:min(16vw,220px);font-family:var(--hand);font-size:clamp(24px,2.2vw,34px);line-height:1.2;color:var(--red);transform:rotate(-6deg)}
+@media (hover:hover) and (pointer:fine){
+  .is-rail .shot-card a:hover .shot-card__img img{--zs:1.05;transform:translate3d(var(--px,0px),0,0) scale(var(--zs))}
+}
+/* phone swipe rows: cards tilt as they slide */
+.shelf__list.is-tilt .shot-card{transform:rotate(var(--cr,0deg)) scale(var(--cs,1));transform-origin:50% 90%;transition:transform .15s linear}
 /* ---------- Work: stacking deck ---------- */
 .deck__head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px 40px;flex-wrap:wrap}
 .deck__hint{position:relative;margin:0 4px 6px 0;font-family:var(--hand);color:var(--red);font-size:clamp(22px,2vw,30px);line-height:1.25;transform:rotate(-5deg);text-align:right}
@@ -708,11 +733,14 @@ a.card__box:hover h3{color:var(--red)}
     </div>
     <div class="shelves" data-shelves>
       <section class="shelf" data-cat="packaging" aria-labelledby="shelf-packaging">
+        <div class="shelf__pin">
+        <span class="shelf__ghost" aria-hidden="true">Packaging</span>
         <header class="shelf__h">
           <p class="shelf__n">01</p>
           <h3 class="shelf__t" id="shelf-packaging">Packaging</h3>
           <p class="shelf__note">boxes that sell from the shelf</p>
           <p class="shelf__c">3 projects<span class="shelf__swipe" aria-hidden="true"> · swipe →</span></p>
+          <span class="shelf__p" aria-hidden="true"><i></i></span>
         </header>
         <ul class="shelf__list shelf__list--odd">
           <li class="shot-card">
@@ -742,14 +770,19 @@ a.card__box:hover h3{color:var(--red)}
               <span class="shot-card__sub">A Bengaluru filter-coffee brand built from the steel tumbler on every darshini counter.</span>
             </a>
           </li>
+          <li class="shelf__end" aria-hidden="true">next shelf ↓</li>
         </ul>
+        </div>
       </section>
       <section class="shelf" data-cat="identity" aria-labelledby="shelf-identity">
+        <div class="shelf__pin">
+        <span class="shelf__ghost" aria-hidden="true">Brand identity</span>
         <header class="shelf__h">
           <p class="shelf__n">02</p>
           <h3 class="shelf__t" id="shelf-identity">Brand identity</h3>
           <p class="shelf__note">marks that hold up small</p>
           <p class="shelf__c">5 projects<span class="shelf__swipe" aria-hidden="true"> · swipe →</span></p>
+          <span class="shelf__p" aria-hidden="true"><i></i></span>
         </header>
         <ul class="shelf__list shelf__list--odd">
           <li class="shot-card">
@@ -792,14 +825,19 @@ a.card__box:hover h3{color:var(--red)}
               <span class="shot-card__sub">Marks for Strive Media, Alwan 360 Consultancy, Fleur &amp; Co. and more, each shown in use.</span>
             </a>
           </li>
+          <li class="shelf__end" aria-hidden="true">next shelf ↓</li>
         </ul>
+        </div>
       </section>
       <section class="shelf" data-cat="print" aria-labelledby="shelf-print">
+        <div class="shelf__pin">
+        <span class="shelf__ghost" aria-hidden="true">Social &amp; print</span>
         <header class="shelf__h">
           <p class="shelf__n">03</p>
           <h3 class="shelf__t" id="shelf-print">Social &amp; print</h3>
           <p class="shelf__note">made to be scrolled or folded</p>
           <p class="shelf__c">2 projects<span class="shelf__swipe" aria-hidden="true"> · swipe →</span></p>
+          <span class="shelf__p" aria-hidden="true"><i></i></span>
         </header>
         <ul class="shelf__list">
           <li class="shot-card">
@@ -818,14 +856,19 @@ a.card__box:hover h3{color:var(--red)}
               <span class="shot-card__sub">Bilingual brochures, a company profile, flyers and ID cards.</span>
             </a>
           </li>
+          <li class="shelf__end" aria-hidden="true">next shelf ↓</li>
         </ul>
+        </div>
       </section>
       <section class="shelf" data-cat="web" aria-labelledby="shelf-web">
+        <div class="shelf__pin">
+        <span class="shelf__ghost" aria-hidden="true">Web, app &amp; listings</span>
         <header class="shelf__h">
           <p class="shelf__n">04</p>
           <h3 class="shelf__t" id="shelf-web">Web, app &amp; listings</h3>
           <p class="shelf__note">screens that have to sell</p>
           <p class="shelf__c">4 projects<span class="shelf__swipe" aria-hidden="true"> · swipe →</span></p>
+          <span class="shelf__p" aria-hidden="true"><i></i></span>
         </header>
         <ul class="shelf__list">
           <li class="shot-card">
@@ -864,14 +907,19 @@ a.card__box:hover h3{color:var(--red)}
               <span class="shot-card__sub">Launching a kitchen-appliance brand online, built around its first product.</span>
             </a>
           </li>
+          <li class="shelf__end" aria-hidden="true">next shelf ↓</li>
         </ul>
+        </div>
       </section>
       <section class="shelf" data-cat="ai" aria-labelledby="shelf-ai">
+        <div class="shelf__pin">
+        <span class="shelf__ghost" aria-hidden="true">AI visuals</span>
         <header class="shelf__h">
           <p class="shelf__n">05</p>
           <h3 class="shelf__t" id="shelf-ai">AI visuals</h3>
           <p class="shelf__note">shot without a studio</p>
           <p class="shelf__c">3 projects<span class="shelf__swipe" aria-hidden="true"> · swipe →</span></p>
+          <span class="shelf__p" aria-hidden="true"><i></i></span>
         </header>
         <ul class="shelf__list shelf__list--odd">
           <li class="shot-card">
@@ -901,7 +949,9 @@ a.card__box:hover h3{color:var(--red)}
               <span class="shot-card__sub">Product imagery and video ads without a full shoot: prompt, generate, then retouch and brand-check by hand.</span>
             </a>
           </li>
+          <li class="shelf__end" aria-hidden="true">that’s the lot. say hi ↓</li>
         </ul>
+        </div>
       </section>
     </div>
   </div>
@@ -1046,6 +1096,68 @@ tiles.forEach(function(t){t.addEventListener('pointermove',function(e){var r=t.g
         if (window.gtag) gtag('event', 'work_filter', { filter: f });
       });
     });
+  }
+
+  /* work shelves: scroll-driven rails */
+  if (shelves && !reduce) {
+    var deskMQ = matchMedia('(min-width: 901px)'), rails = [], rTick = false;
+    function shelfLayout(){
+      var rail = deskMQ.matches;
+      shelves.classList.toggle('is-rail', rail);
+      rails = [];
+      sh.forEach(function(g){
+        var list = g.querySelector('.shelf__list');
+        list.classList.toggle('is-tilt', !rail);
+        g.style.removeProperty('--h');
+        if (!rail || g.hidden) return;
+        var pin = g.querySelector('.shelf__pin'), cs = getComputedStyle(pin);
+        var inner = pin.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+        var dist = Math.max(0, list.scrollWidth - inner);
+        g.style.setProperty('--h', (innerHeight + dist * 1.1) + 'px');
+        rails.push({ g: g, list: list, dist: dist, ghost: g.querySelector('.shelf__ghost'), bar: g.querySelector('.shelf__p'), cards: [].slice.call(list.querySelectorAll('.shot-card')) });
+      });
+      railFrame(); tiltAll();
+    }
+    function tiltCard(c, d, i){
+      d = Math.max(-1.6, Math.min(1.6, d));
+      var ad = Math.abs(d), dir = i % 2 ? -1 : 1;
+      c.style.setProperty('--cr', (d * 5 * dir).toFixed(2) + 'deg');
+      c.style.setProperty('--cs', (1 - .07 * ad).toFixed(3));
+      c.style.setProperty('--cy', (ad * 26).toFixed(1) + 'px');
+      c.style.setProperty('--px', (d * -36).toFixed(1) + 'px');
+    }
+    function railFrame(){
+      rTick = false;
+      var vh = innerHeight, vw = innerWidth;
+      rails.forEach(function(r){
+        var b = r.g.getBoundingClientRect();
+        if (b.bottom < -vh || b.top > vh * 2) return;
+        var p = Math.min(Math.max(-b.top / Math.max(1, b.height - vh), 0), 1);
+        r.list.style.setProperty('--tx', (-p * r.dist).toFixed(1) + 'px');
+        r.ghost.style.setProperty('--gx', (-p * r.dist * .35).toFixed(1) + 'px');
+        r.bar.style.setProperty('--p', p.toFixed(3));
+        r.cards.forEach(function(c, i){
+          var cb = c.getBoundingClientRect();
+          tiltCard(c, (cb.left + cb.width / 2 - vw * .5) / (vw * .5), i);
+        });
+      });
+    }
+    function tiltList(list){
+      var lb = list.getBoundingClientRect(), mid = lb.left + lb.width / 2;
+      [].forEach.call(list.querySelectorAll('.shot-card'), function(c, i){
+        var cb = c.getBoundingClientRect();
+        tiltCard(c, (cb.left + cb.width / 2 - mid) / (lb.width * .9), i);
+        c.style.removeProperty('--cy'); c.style.removeProperty('--px');
+      });
+    }
+    function tiltAll(){ if (!deskMQ.matches) sh.forEach(function(g){ tiltList(g.querySelector('.shelf__list')); }); }
+    sh.forEach(function(g){ var l = g.querySelector('.shelf__list'); l.addEventListener('scroll', function(){ if (!deskMQ.matches) requestAnimationFrame(function(){ tiltList(l); }); }, { passive: true }); });
+    addEventListener('scroll', function(){ if (rails.length && !rTick) { rTick = true; requestAnimationFrame(railFrame); } }, { passive: true });
+    addEventListener('resize', shelfLayout);
+    addEventListener('load', shelfLayout);
+    if (document.fonts) document.fonts.ready.then(shelfLayout);
+    sbtn.forEach(function(btn){ btn.addEventListener('click', function(){ requestAnimationFrame(shelfLayout); }); });
+    shelfLayout();
   }
   /* work deck */
   var deck = document.querySelector('[data-deck]');

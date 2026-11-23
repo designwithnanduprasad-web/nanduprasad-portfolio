@@ -436,6 +436,54 @@ a.card__box:hover h3{color:var(--red)}
 .foot__meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px 24px;margin-top:clamp(64px,9vw,120px);font-family:var(--mono);font-size:12px;text-transform:uppercase}
 .giant{display:block;margin-top:18px;font-family:var(--display);color:var(--red);font-size:clamp(56px,15.4vw,260px);line-height:.8;text-transform:uppercase;white-space:nowrap}
 
+/* ---------- Work: category shelves ---------- */
+.shelf__bar{margin-top:48px}
+.shelves{margin-top:8px}
+.shelf{display:grid;grid-template-columns:minmax(220px,3fr) minmax(0,9fr);gap:24px clamp(28px,4vw,64px);padding:clamp(36px,5vw,64px) 0;border-top:2px solid var(--ink)}
+.shelf[hidden]{display:none}
+.shelf__h{align-self:start;position:sticky;top:24px}
+.shelf__n{margin:0;font-family:var(--display);font-size:clamp(40px,4.4vw,72px);line-height:.9;color:var(--red)}
+.shelf .shelf__t{margin:10px 0 0;font-family:var(--display);font-weight:400;font-size:clamp(34px,3.6vw,58px);line-height:.92;text-transform:uppercase;text-wrap:balance}
+.shelf__note{margin:12px 0 0;font-family:var(--hand);font-size:clamp(19px,1.6vw,24px);line-height:1.25;color:var(--red);transform:rotate(-2deg);transform-origin:0 50%}
+.shelf__c{margin:16px 0 0;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.shelf__swipe{display:none}
+.shelf__list{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,3vw,44px) clamp(16px,2vw,28px);margin:0;padding:0;list-style:none}
+.shelf__list--odd>.shot-card:first-child{grid-column:1/-1}
+.shot-card a{display:block;color:inherit;text-decoration:none}
+.shot-card__img{position:relative;display:block;aspect-ratio:3/2;overflow:hidden;background:var(--sheet);outline:2px solid var(--ink);outline-offset:-2px}
+.shelf__list--odd>.shot-card:first-child .shot-card__img{aspect-ratio:21/9}
+.shot-card__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.shot-card__img img.is-white{background:#fff}
+.shot-card__go{position:absolute;right:14px;bottom:14px;padding:6px 12px 7px;border-radius:999px;background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:12px;opacity:0;transform:translateY(8px) rotate(-3deg);transition:opacity .3s,transform .45s var(--ease)}
+.shot-card__meta{display:block;margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.shot-card__t{display:block;margin-top:6px;font-family:var(--display);font-size:clamp(28px,2.6vw,42px);line-height:.95;text-transform:uppercase;transition:color .25s}
+.shot-card__note{display:block;margin-top:6px;font-family:var(--hand);font-size:19px;line-height:1.25;color:var(--red)}
+.shot-card__sub{display:block;margin-top:8px;max-width:52ch;font-size:15px;line-height:1.45;color:var(--muted)}
+.shot-card a:focus-visible{outline:3px solid var(--red);outline-offset:6px}
+@media (hover:hover) and (pointer:fine){
+  .shot-card a:hover .shot-card__img img{transform:scale(1.04)}
+  .shot-card a:hover .shot-card__go{opacity:1;transform:rotate(-3deg)}
+  .shot-card a:hover .shot-card__t{color:var(--red)}
+}
+@media (max-width:900px){
+  .shelf{grid-template-columns:1fr}
+  .shelf__h{position:static;display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:baseline}
+  .shelf__n{grid-row:1/3}
+  .shelf .shelf__t{margin:0}
+  .shelf__note{grid-column:2;margin-top:6px}
+  .shelf__c{grid-column:2;margin-top:8px}
+}
+@media (max-width:760px){
+  .shelf__bar{margin-top:32px}
+  .shelf__swipe{display:inline}
+  .shelf__list,.shelf__list--odd{display:flex;gap:14px;margin:0 calc(var(--gutter) * -1);padding:0 var(--gutter) 6px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 var(--gutter);scrollbar-width:none}
+  .shelf__list::-webkit-scrollbar{display:none}
+  .shot-card{flex:0 0 82%;scroll-snap-align:start}
+  .shelf__list--odd>.shot-card:first-child .shot-card__img{aspect-ratio:3/2}
+  .shot-card__sub{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .shelf__list>.shot-card:only-child,.shelf__list>.shot-card:first-child:nth-last-child(1){flex-basis:100%}
+}
+@media (prefers-reduced-motion:reduce){.shot-card__img img,.shot-card__go{transition:none}}
 /* ---------- Work: stacking deck ---------- */
 .deck__head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px 40px;flex-wrap:wrap}
 .deck__hint{position:relative;margin:0 4px 6px 0;font-family:var(--hand);color:var(--red);font-size:clamp(22px,2vw,30px);line-height:1.25;transform:rotate(-5deg);text-align:right}
@@ -646,10 +694,10 @@ a.card__box:hover h3{color:var(--red)}
   <div class="wrap">
     <div class="deck__head">
       <h2 data-reveal>Stuff I made <em>(and made up)</em></h2>
-      <p class="deck__hint" data-reveal aria-hidden="true">they stack.<br>keep scrolling <svg viewBox="0 0 40 46" width="34" height="40"><path d="M8 3c14 6 22 18 17 34M17 31l8 7 6-10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+      <p class="deck__hint" data-reveal aria-hidden="true">pick a shelf,<br>or just scroll <svg viewBox="0 0 40 46" width="34" height="40"><path d="M8 3c14 6 22 18 17 34M17 31l8 7 6-10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
     </div>
-    <div class="deck__bar">
-      <div class="deck__f" role="group" aria-label="Show projects by type">
+    <div class="shelf__bar">
+      <div class="deck__f" role="group" aria-label="Show projects by category">
         <button type="button" aria-pressed="true" data-f="all">All <sup>17</sup></button>
         <button type="button" aria-pressed="false" data-f="packaging">Packaging <sup>3</sup></button>
         <button type="button" aria-pressed="false" data-f="identity">Brand identity <sup>5</sup></button>
@@ -657,241 +705,205 @@ a.card__box:hover h3{color:var(--red)}
         <button type="button" aria-pressed="false" data-f="web">Web, app &amp; listings <sup>4</sup></button>
         <button type="button" aria-pressed="false" data-f="ai">AI visuals <sup>3</sup></button>
       </div>
-      <p class="deck__meter" aria-hidden="true"><b data-deck-n>1</b><i>/<span data-deck-total>17</span></i><span class="deck__name" data-deck-name>Packaging</span></p>
     </div>
-    <ul class="grid deck" data-deck>
-      <li style="--i:0;--r:-1.2deg" class="card card--ch" data-cat="packaging" data-ch>
-        <div class="card__box ch">
-          <p class="ch__n">01<i>/05</i></p>
-          <h3 class="ch__t">Packaging</h3>
-          <p class="card__note ch__note">boxes that sell from the shelf</p>
-          <div class="ch__foot"><p class="ch__c">3 projects</p><ol class="ch__list"><li><a href="/work/kilig-nexa-core">KILIG Nexa Core</a></li><li><a href="/work/thali-theory">Thali Theory</a></li><li><a href="/work/ooru">Ooru</a></li></ol></div>
-        </div>
-      </li>
-      <li style="--i:1;--r:-2.2deg" class="card tone-ink" data-cat="packaging">
-        <a class="card__box" href="/work/kilig-nexa-core">
-          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_63442438-1a29-4b73-abea-ebd6c7bb15d9.webp&amp;w=1600&amp;q=75" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_63442438-1a29-4b73-abea-ebd6c7bb15d9.webp&amp;w=800&amp;q=75 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_63442438-1a29-4b73-abea-ebd6c7bb15d9.webp&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_63442438-1a29-4b73-abea-ebd6c7bb15d9.webp&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 1320px) 100vw, 1320px" alt="KILIG Nexa Core air fryer retail box" loading="lazy" decoding="async"><span class="cover__tag">Client work</span><span class="view" aria-hidden="true">Read case study →</span></span>
-          <p class="card__meta"><span>Client work</span><span>2025</span></p>
-          <h3 class="card__title">KILIG Nexa Core</h3>
-          <p class="card__note">the glass does the talking</p>
-          <p class="card__sub">Retail packaging for a glass air fryer. The box leads with the glass, not the numbers.</p>
-          <p class="card__tags"><span>KILIG</span><span>Packaging</span><span>Retail carton</span></p>
-          <span class="card__cta" aria-hidden="true">Read case study →</span>
-        </a>
-      </li>
-      <li style="--i:2;--r:2.4deg" class="card tone-sheet" data-cat="packaging">
-        <a class="card__box" href="/work/thali-theory">
-          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.webp&amp;w=1200&amp;q=75" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.webp&amp;w=800&amp;q=75 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.webp&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.webp&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 760px) 100vw, 640px" alt="Thali Theory spice-kit boxes" loading="lazy" decoding="async"><span class="cover__tag">Concept</span><span class="view" aria-hidden="true">Read case study →</span></span>
-          <p class="card__meta"><span>Concept</span><span>2026</span></p>
-          <h3 class="card__title">Thali Theory</h3>
-          <p class="card__note">one colour per dish</p>
-          <p class="card__sub">Spice-kit packaging that sells the dish, not the brand: one colour per dish, three steps per box.</p>
-          <p class="card__tags"><span>Concept</span><span>Packaging</span><span>Range design</span></p>
-          <span class="card__cta" aria-hidden="true">Read case study →</span>
-        </a>
-      </li>
-      <li style="--i:3;--r:-1.8deg" class="card tone-red" data-cat="packaging">
-        <a class="card__box" href="/work/ooru">
-          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=1200&amp;q=75" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=800&amp;q=75 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 1320px) 100vw, 1320px" alt="Ooru coffee brand flat-lay" loading="lazy" decoding="async"><span class="cover__tag">Concept</span><span class="view" aria-hidden="true">Read case study →</span></span>
-          <p class="card__meta"><span>Concept</span><span>2026</span></p>
-          <h3 class="card__title">Ooru</h3>
-          <p class="card__note">tumbler-approved</p>
-          <p class="card__sub">A Bengaluru filter-coffee brand built from the steel tumbler on every darshini counter.</p>
-          <p class="card__tags"><span>Concept</span><span>Brand identity</span><span>Packaging</span><span>Signage</span></p>
-          <span class="card__cta" aria-hidden="true">Read case study →</span>
-        </a>
-      </li>
-      <li style="--i:0;--r:-1.2deg" class="card card--ch" data-cat="identity" data-ch>
-        <div class="card__box ch">
-          <p class="ch__n">02<i>/05</i></p>
-          <h3 class="ch__t">Brand identity</h3>
-          <p class="card__note ch__note">marks that hold up small</p>
-          <div class="ch__foot"><p class="ch__c">5 projects</p><ol class="ch__list"><li><a href="/work/willow">Willow</a></li><li><a href="/work/js-group">JS Group</a></li><li><a href="/work/diya-al-shams">Diya Al Shams</a></li><li><a href="/work/laundry-basket">The Laundry Basket</a></li><li><a href="/work/logo-folio">Logo folio</a></li></ol></div>
-        </div>
-      </li>
-      <li style="--i:1;--r:-2.2deg" class="card tone-ink" data-cat="identity">
-        <a class="card__box" href="/work/willow">
-          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp27.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp27.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp27.webp&amp;w=1200&amp;q=78 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp27.webp&amp;w=1600&amp;q=78 1600w" sizes="(max-width: 760px) 100vw, 760px" alt="Willow wordmark on a dark shopfront" loading="lazy" decoding="async"><span class="view" aria-hidden="true">Read case study →</span></span>
-          <p class="card__meta"><span>Brand identity</span></p>
-          <h3 class="card__title">Willow</h3>
-          <p class="card__note">one letter, two meanings</p>
-          <p class="card__sub">A fashion label named after the willow flower: a W mark in a diamond frame, from shopfront to swing tag.</p>
-          <p class="card__tags"><span>Fashion</span><span>Logo</span><span>Signage</span><span>Merchandise</span></p>
-          <span class="card__cta" aria-hidden="true">Read case study →</span>
-        </a>
-      </li>
-      <li style="--i:2;--r:2.4deg" class="card tone-sheet" data-cat="identity">
-        <a class="card__box" href="/work/js-group">
-          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp39.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp39.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp39.webp&amp;w=1200&amp;q=78 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp39.webp&amp;w=1600&amp;q=78 1600w" sizes="(max-width: 760px) 100vw, 760px" alt="JS Group logo foil-printed on black" loading="lazy" decoding="async"><span class="view" aria-hidden="true">Read case study →</span></span>
-          <p class="card__meta"><span>Brand identity</span></p>
-          <h3 class="card__title">JS Group</h3>
-          <p class="card__note">silver, said softly</p>
-          <p class="card__sub">Identity for a 925 silver jewellery store: one-line monogram, jewellery boxes, pouches and signage.</p>
-          <p class="card__tags"><span>Jewellery</span><span>Logo</span><span>Packaging</span><span>Signage</span></p>
-          <span class="card__cta" aria-hidden="true">Read case study →</span>
-        </a>
-      </li>
-      <li style="--i:3;--r:-1.8deg" class="card tone-red" data-cat="identity">
-        <a class="card__box" href="/work/diya-al-shams">
-          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp62.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp62.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp62.webp&amp;w=1200&amp;q=78 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp62.webp&amp;w=1600&amp;q=78 1600w" sizes="(max-width: 760px) 100vw, 760px" alt="Diya Al Shams paper cups in deep green" loading="lazy" decoding="async"><span class="view" aria-hidden="true">Read case study →</span></span>
-          <p class="card__meta"><span>Brand identity</span></p>
-          <h3 class="card__title">Diya Al Shams</h3>
-          <p class="card__note">built for the takeaway bag</p>
-          <p class="card__sub">A food brand across Dubai, Sharjah and Ajman: initials icon, line-drawn food pattern, cups and bags.</p>
-          <p class="card__tags"><span>Food</span><span>Logo</span><span>Pattern</span><span>Packaging</span></p>
-          <span class="card__cta" aria-hidden="true">Read case study →</span>
-        </a>
-      </li>
-      <li style="--i:4;--r:2.6deg" class="card tone-ink" data-cat="identity">
-        <a class="card__box" href="/work/laundry-basket">
-          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp69.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp69.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp69.webp&amp;w=1200&amp;q=78 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp69.webp&amp;w=1600&amp;q=78 1600w" sizes="(max-width: 760px) 100vw, 760px" alt="The Laundry Basket delivery van" loading="lazy" decoding="async"><span class="view" aria-hidden="true">Read case study →</span></span>
-          <p class="card__meta"><span>Brand identity</span></p>
-          <h3 class="card__title">The Laundry Basket</h3>
-          <p class="card__note">the B does the heavy lifting</p>
-          <p class="card__sub">A laundry service identity where the B becomes the icon on the app, the receipts and the van.</p>
-          <p class="card__tags"><span>Services</span><span>Logo system</span><span>Stationery</span><span>Van livery</span></p>
-          <span class="card__cta" aria-hidden="true">Read case study →</span>
-        </a>
-      </li>
-      <li style="--i:5;--r:-2.6deg" class="card tone-sheet" data-cat="identity">
-        <a class="card__box" href="/work/logo-folio">
-          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp22.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp22.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp22.webp&amp;w=1200&amp;q=78 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp22.webp&amp;w=1600&amp;q=78 1600w" sizes="(max-width: 760px) 100vw, 760px" alt="Grid of ten logos designed by Nandu" loading="lazy" decoding="async"><span class="view" aria-hidden="true">Read case study →</span></span>
-          <p class="card__meta"><span>Logo design</span></p>
-          <h3 class="card__title">Logo folio</h3>
-          <p class="card__note">small first, pretty second</p>
-          <p class="card__sub">Marks for Strive Media, Alwan 360 Consultancy, Fleur &amp; Co. and more, each shown in use.</p>
-          <p class="card__tags"><span>Logos</span><span>Lockups</span><span>Mockups</span></p>
-          <span class="card__cta" aria-hidden="true">Read case study →</span>
-        </a>
-      </li>
-      <li style="--i:0;--r:-1.2deg" class="card card--ch" data-cat="print" data-ch>
-        <div class="card__box ch">
-          <p class="ch__n">03<i>/05</i></p>
-          <h3 class="ch__t">Social &amp; print</h3>
-          <p class="card__note ch__note">made to be scrolled or folded</p>
-          <div class="ch__foot"><p class="ch__c">2 projects</p><ol class="ch__list"><li><a href="/work/social-media">Social media</a></li><li><a href="/work/print-stationery">Print &amp; stationery</a></li></ol></div>
-        </div>
-      </li>
-      <li style="--i:1;--r:-2.2deg" class="card tone-ink" data-cat="print">
-        <a class="card__box" href="/work/social-media">
-          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp06.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp06.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp06.webp&amp;w=1200&amp;q=78 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp06.webp&amp;w=1600&amp;q=78 1600w" sizes="(max-width: 760px) 100vw, 760px" alt="Grid of social media posts" loading="lazy" decoding="async"><span class="view" aria-hidden="true">Read case study →</span></span>
-          <p class="card__meta"><span>Social media</span></p>
-          <h3 class="card__title">Social media</h3>
-          <p class="card__note">one idea per square</p>
-          <p class="card__sub">Feed posts and campaigns where every square carries one idea and one strong image.</p>
-          <p class="card__tags"><span>Instagram</span><span>Campaigns</span><span>Art direction</span></p>
-          <span class="card__cta" aria-hidden="true">Read case study →</span>
-        </a>
-      </li>
-      <li style="--i:2;--r:2.4deg" class="card tone-sheet" data-cat="print">
-        <a class="card__box" href="/work/print-stationery">
-          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp13.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp13.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp13.webp&amp;w=1200&amp;q=78 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp13.webp&amp;w=1600&amp;q=78 1600w" sizes="(max-width: 760px) 100vw, 760px" alt="Bilingual brochure" loading="lazy" decoding="async"><span class="view" aria-hidden="true">Read case study →</span></span>
-          <p class="card__meta"><span>Print</span></p>
-          <h3 class="card__title">Print &amp; stationery</h3>
-          <p class="card__note">folds, flyers and lanyards</p>
-          <p class="card__sub">Bilingual brochures, a company profile, flyers and ID cards.</p>
-          <p class="card__tags"><span>Brochures</span><span>Company profile</span><span>ID cards</span></p>
-          <span class="card__cta" aria-hidden="true">Read case study →</span>
-        </a>
-      </li>
-      <li style="--i:0;--r:-1.2deg" class="card card--ch" data-cat="web" data-ch>
-        <div class="card__box ch">
-          <p class="ch__n">04<i>/05</i></p>
-          <h3 class="ch__t">Web, app &amp; listings</h3>
-          <p class="card__note ch__note">screens that have to sell</p>
-          <div class="ch__foot"><p class="ch__c">4 projects</p><ol class="ch__list"><li><a href="/work/nev">NEV Sonic</a></li><li><a href="/work/kilig-mykilig-app">MyKilig app</a></li><li><a href="https://mykilig.com" target="_blank" rel="noopener">Kilig</a></li><li><a href="https://ryken.in" target="_blank" rel="noopener">Ryken</a></li></ol></div>
-        </div>
-      </li>
-      <li style="--i:1;--r:-2.2deg" class="card tone-ink" data-cat="web">
-        <a class="card__box" href="/work/nev">
-          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fnev%2F2396907c-image.jpg&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fnev%2F2396907c-image.jpg&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fnev%2F2396907c-image.jpg&amp;w=1200&amp;q=78 1200w" sizes="(max-width: 760px) 100vw, 760px" alt="NEV Sonic massage gun with its massage heads" loading="lazy" decoding="async" style="background:#fff"><span class="view" aria-hidden="true">Read case study →</span></span>
-          <p class="card__meta"><span>Client work</span><span>2025</span></p>
-          <h3 class="card__title">NEV Sonic</h3>
-          <p class="card__note">has to sell at thumbnail size</p>
-          <p class="card__sub">Seven primary images and a twelve-module A+ page for a mini massage gun on Amazon.</p>
-          <p class="card__tags"><span>Amazon listing</span><span>A+ content</span><span>Art direction</span></p>
-          <span class="card__cta" aria-hidden="true">Read case study →</span>
-        </a>
-      </li>
-      <li style="--i:2;--r:2.4deg" class="card tone-sheet" data-cat="web">
-        <a class="card__box" href="/work/kilig-mykilig-app">
-          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fmykilig-hero.webp&amp;w=1600&amp;q=80" srcset="/_vercel/image?url=%2Fwork%2Fmykilig-hero.webp&amp;w=800&amp;q=80 800w, /_vercel/image?url=%2Fwork%2Fmykilig-hero.webp&amp;w=1600&amp;q=80 1600w" sizes="(max-width: 1320px) 100vw, 1320px" alt="MyKilig app screens: welcome, home and cooking timer" loading="lazy" decoding="async" style="object-position:center 40%"><span class="cover__tag">Client work</span><span class="view" aria-hidden="true">Read case study →</span></span>
-          <p class="card__meta"><span>Client work</span><span>2025</span></p>
-          <h3 class="card__title">MyKilig app</h3>
-          <p class="card__note">no more babysitting fries</p>
-          <p class="card__sub">One app for KILIG&rsquo;s air fryer, ice maker and car fridge, designed so you never have to stand and watch your food.</p>
-          <p class="card__tags"><span>KILIG</span><span>App UI/UX</span><span>30 screens</span></p>
-          <span class="card__cta" aria-hidden="true">Read case study →</span>
-        </a>
-      </li>
-      <li style="--i:3;--r:-1.8deg" class="card tone-red" data-cat="web">
-        <a class="card__box" href="https://mykilig.com" target="_blank" rel="noopener">
-          <span class="cover cover--red cover--art" style="--bg:url('/_vercel/image?url=%2Fwork%2Fimg%2Fhf_903af959-b8c2-47c4-860a-46c5a5d458a3.webp&amp;w=1200&amp;q=75')"><span class="cover__row"><span>mykilig.com</span><span>02</span></span><span class="cover__word">Kilig</span><span class="cover__row"><span>Web · Listings · Packaging</span></span>
-            <svg class="cover__star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5c.6 4.6 2.6 7 8.5 8.5-5.9 1.5-7.9 3.9-8.5 8.5-.6-4.6-2.6-7-8.5-8.5 5.9-1.5 7.9-3.9 8.5-8.5Z" fill="currentColor"/></svg>
-            <span class="view" aria-hidden="true">Visit site ↗</span></span>
-          <p class="card__meta"><span>Client site</span><span>2025</span></p>
-          <h3 class="card__title">Kilig</h3>
-          <p class="card__note">very different appliances, one store</p>
-          <p class="card__sub">Turning a catalogue of very different appliances into one store that’s easy to shop.</p>
-          <p class="card__tags"><span>Web design</span><span>Shopify</span><span>Listings</span><span>Packaging</span></p>
-          <span class="card__cta" aria-hidden="true">Visit site ↗</span>
-        </a>
-      </li>
-      <li style="--i:4;--r:2.6deg" class="card tone-ink" data-cat="web">
-        <a class="card__box" href="https://ryken.in" target="_blank" rel="noopener">
-          <span class="cover cover--ink cover--art" style="--bg:url('/_vercel/image?url=%2Fwork%2Fimg%2Fhf_a91bc7c1-4056-44c6-a514-3f4f4077f015.webp&amp;w=1200&amp;q=75')"><span class="cover__row"><span>ryken.in</span><span>01</span></span><span class="cover__word">Ryken</span><span class="cover__row"><span>Web · Shopify · Brand launch</span></span>
-            <svg class="cover__star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5c.6 4.6 2.6 7 8.5 8.5-5.9 1.5-7.9 3.9-8.5 8.5-.6-4.6-2.6-7-8.5-8.5 5.9-1.5 7.9-3.9 8.5-8.5Z" fill="currentColor"/></svg>
-            <span class="view" aria-hidden="true">Visit site ↗</span></span>
-          <p class="card__meta"><span>Client site</span><span>2025</span></p>
-          <h3 class="card__title">Ryken</h3>
-          <p class="card__note">launched from a blank page</p>
-          <p class="card__sub">Launching a kitchen-appliance brand online, built around its first product.</p>
-          <p class="card__tags"><span>Web design</span><span>Shopify</span><span>Brand launch</span></p>
-          <span class="card__cta" aria-hidden="true">Visit site ↗</span>
-        </a>
-      </li>
-      <li style="--i:0;--r:-1.2deg" class="card card--ch" data-cat="ai" data-ch>
-        <div class="card__box ch">
-          <p class="ch__n">05<i>/05</i></p>
-          <h3 class="ch__t">AI visuals</h3>
-          <p class="card__note ch__note">shot without a studio</p>
-          <div class="ch__foot"><p class="ch__c">3 projects</p><ol class="ch__list"><li><a href="/work/kilig-wine-cooler">KILIG WC&#8209;18 Wine Cooler</a></li><li><a href="/work/steep">Steep</a></li><li><a href="/work/ai-ad-studio">AI Ad Studio</a></li></ol></div>
-        </div>
-      </li>
-      <li style="--i:1;--r:-2.2deg" class="card tone-ink" data-cat="ai">
-        <a class="card__box" href="/work/kilig-wine-cooler">
-          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fkilig-wc18-ad.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fkilig-wc18-ad.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fkilig-wc18-ad.webp&amp;w=1200&amp;q=78 1200w" sizes="(max-width: 1320px) 100vw, 1320px" alt="KILIG WC-18 wine cooler with wine bottles, grapes and ice on deep blue" loading="lazy" decoding="async"><span class="cover__tag">Client work</span><span class="view" aria-hidden="true">Read case study →</span></span>
-          <p class="card__meta"><span>Client work</span><span>2025</span></p>
-          <h3 class="card__title">KILIG WC&#8209;18 Wine Cooler</h3>
-          <p class="card__note">no studio was harmed</p>
-          <p class="card__sub">A cinematic AI video ad and an eight-image Amazon listing for a compact wine cooler.</p>
-          <p class="card__tags"><span>KILIG</span><span>AI video</span><span>Amazon listing</span></p>
-          <span class="card__cta" aria-hidden="true">Read case study →</span>
-        </a>
-      </li>
-      <li style="--i:2;--r:2.4deg" class="card tone-sheet" data-cat="ai">
-        <a class="card__box" href="/work/steep">
-          <span class="cover cover--img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=1200&amp;q=75" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=800&amp;q=75 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 760px) 100vw, 640px" alt="Steep smart kettle product shot" loading="lazy" decoding="async"><span class="cover__tag">Concept</span><span class="view" aria-hidden="true">Read case study →</span></span>
-          <p class="card__meta"><span>Concept</span><span>2026</span></p>
-          <h3 class="card__title">Steep</h3>
-          <p class="card__note">zero shoots, all kettle</p>
-          <p class="card__sub">A smart-kettle launch campaign made entirely with generative AI. No studio, no shoot.</p>
-          <p class="card__tags"><span>Concept</span><span>AI ad campaign</span><span>Art direction</span></p>
-          <span class="card__cta" aria-hidden="true">Read case study →</span>
-        </a>
-      </li>
-      <li style="--i:3;--r:-1.8deg" class="card tone-red" data-cat="ai">
-        <a class="card__box" href="/work/ai-ad-studio">
-          <span class="cover cover--sheet cover--art" style="--bg:url('/_vercel/image?url=%2Fwork%2Fimg%2Fhf_1334ad03-2037-48bd-8f42-45d9d4e3c5b8.webp&amp;w=1200&amp;q=75')"><span class="cover__row"><span>Higgsfield · ChatGPT · Claude</span><span>03</span></span><span class="cover__word">AI Ad<br>Studio</span><span class="cover__row"><span>Video ads · KILIG</span></span>
-            <svg class="cover__star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5c.6 4.6 2.6 7 8.5 8.5-5.9 1.5-7.9 3.9-8.5 8.5-.6-4.6-2.6-7-8.5-8.5 5.9-1.5 7.9-3.9 8.5-8.5Z" fill="currentColor"/></svg></span>
-          <p class="card__meta"><span>Workflow</span><span>2025</span></p>
-          <h3 class="card__title">AI Ad Studio</h3>
-          <p class="card__note">prompt, generate, fix by hand</p>
-          <p class="card__sub">Product imagery and video ads without a full shoot: prompt, generate, then retouch and brand-check by hand.</p>
-          <p class="card__tags"><span>AI video</span><span>Prompt writing</span><span>Workflow design</span></p>
-        </a>
-      </li>
-    </ul>
+    <div class="shelves" data-shelves>
+      <section class="shelf" data-cat="packaging" aria-labelledby="shelf-packaging">
+        <header class="shelf__h">
+          <p class="shelf__n">01</p>
+          <h3 class="shelf__t" id="shelf-packaging">Packaging</h3>
+          <p class="shelf__note">boxes that sell from the shelf</p>
+          <p class="shelf__c">3 projects<span class="shelf__swipe" aria-hidden="true"> · swipe →</span></p>
+        </header>
+        <ul class="shelf__list shelf__list--odd">
+          <li class="shot-card">
+            <a href="/work/kilig-nexa-core">
+              <span class="shot-card__img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_63442438-1a29-4b73-abea-ebd6c7bb15d9.webp&amp;w=1600&amp;q=75" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_63442438-1a29-4b73-abea-ebd6c7bb15d9.webp&amp;w=800&amp;q=75 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_63442438-1a29-4b73-abea-ebd6c7bb15d9.webp&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_63442438-1a29-4b73-abea-ebd6c7bb15d9.webp&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 760px) 82vw, (max-width: 1320px) 45vw, 620px" alt="KILIG Nexa Core air fryer retail box" loading="lazy" decoding="async"><span class="shot-card__go" aria-hidden="true">View →</span></span>
+              <span class="shot-card__meta">Client work · 2025</span>
+              <span class="shot-card__t">KILIG Nexa Core</span>
+              <span class="shot-card__note">the glass does the talking</span>
+              <span class="shot-card__sub">Retail packaging for a glass air fryer. The box leads with the glass, not the numbers.</span>
+            </a>
+          </li>
+          <li class="shot-card">
+            <a href="/work/thali-theory">
+              <span class="shot-card__img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.webp&amp;w=1200&amp;q=75" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.webp&amp;w=800&amp;q=75 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.webp&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_9b1e8e9e-1f44-46d1-b67c-522fd714d50e.webp&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 760px) 82vw, (max-width: 1320px) 45vw, 620px" alt="Thali Theory spice-kit boxes" loading="lazy" decoding="async"><span class="shot-card__go" aria-hidden="true">View →</span></span>
+              <span class="shot-card__meta">Concept · 2026</span>
+              <span class="shot-card__t">Thali Theory</span>
+              <span class="shot-card__note">one colour per dish</span>
+              <span class="shot-card__sub">Spice-kit packaging that sells the dish, not the brand: one colour per dish, three steps per box.</span>
+            </a>
+          </li>
+          <li class="shot-card">
+            <a href="/work/ooru">
+              <span class="shot-card__img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=1200&amp;q=75" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=800&amp;q=75 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_a0c2693e-465b-402a-ae1b-9a20c4cb3afc.webp&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 760px) 82vw, (max-width: 1320px) 45vw, 620px" alt="Ooru coffee brand flat-lay" loading="lazy" decoding="async"><span class="shot-card__go" aria-hidden="true">View →</span></span>
+              <span class="shot-card__meta">Concept · 2026</span>
+              <span class="shot-card__t">Ooru</span>
+              <span class="shot-card__note">tumbler-approved</span>
+              <span class="shot-card__sub">A Bengaluru filter-coffee brand built from the steel tumbler on every darshini counter.</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+      <section class="shelf" data-cat="identity" aria-labelledby="shelf-identity">
+        <header class="shelf__h">
+          <p class="shelf__n">02</p>
+          <h3 class="shelf__t" id="shelf-identity">Brand identity</h3>
+          <p class="shelf__note">marks that hold up small</p>
+          <p class="shelf__c">5 projects<span class="shelf__swipe" aria-hidden="true"> · swipe →</span></p>
+        </header>
+        <ul class="shelf__list shelf__list--odd">
+          <li class="shot-card">
+            <a href="/work/willow">
+              <span class="shot-card__img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp27.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp27.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp27.webp&amp;w=1200&amp;q=78 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp27.webp&amp;w=1600&amp;q=78 1600w" sizes="(max-width: 760px) 82vw, (max-width: 1320px) 45vw, 620px" alt="Willow wordmark on a dark shopfront" loading="lazy" decoding="async"><span class="shot-card__go" aria-hidden="true">View →</span></span>
+              <span class="shot-card__t">Willow</span>
+              <span class="shot-card__note">one letter, two meanings</span>
+              <span class="shot-card__sub">A fashion label named after the willow flower: a W mark in a diamond frame, from shopfront to swing tag.</span>
+            </a>
+          </li>
+          <li class="shot-card">
+            <a href="/work/js-group">
+              <span class="shot-card__img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp39.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp39.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp39.webp&amp;w=1200&amp;q=78 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp39.webp&amp;w=1600&amp;q=78 1600w" sizes="(max-width: 760px) 82vw, (max-width: 1320px) 45vw, 620px" alt="JS Group logo foil-printed on black" loading="lazy" decoding="async"><span class="shot-card__go" aria-hidden="true">View →</span></span>
+              <span class="shot-card__t">JS Group</span>
+              <span class="shot-card__note">silver, said softly</span>
+              <span class="shot-card__sub">Identity for a 925 silver jewellery store: one-line monogram, jewellery boxes, pouches and signage.</span>
+            </a>
+          </li>
+          <li class="shot-card">
+            <a href="/work/diya-al-shams">
+              <span class="shot-card__img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp62.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp62.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp62.webp&amp;w=1200&amp;q=78 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp62.webp&amp;w=1600&amp;q=78 1600w" sizes="(max-width: 760px) 82vw, (max-width: 1320px) 45vw, 620px" alt="Diya Al Shams paper cups in deep green" loading="lazy" decoding="async"><span class="shot-card__go" aria-hidden="true">View →</span></span>
+              <span class="shot-card__t">Diya Al Shams</span>
+              <span class="shot-card__note">built for the takeaway bag</span>
+              <span class="shot-card__sub">A food brand across Dubai, Sharjah and Ajman: initials icon, line-drawn food pattern, cups and bags.</span>
+            </a>
+          </li>
+          <li class="shot-card">
+            <a href="/work/laundry-basket">
+              <span class="shot-card__img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp69.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp69.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp69.webp&amp;w=1200&amp;q=78 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp69.webp&amp;w=1600&amp;q=78 1600w" sizes="(max-width: 760px) 82vw, (max-width: 1320px) 45vw, 620px" alt="The Laundry Basket delivery van" loading="lazy" decoding="async"><span class="shot-card__go" aria-hidden="true">View →</span></span>
+              <span class="shot-card__t">The Laundry Basket</span>
+              <span class="shot-card__note">the B does the heavy lifting</span>
+              <span class="shot-card__sub">A laundry service identity where the B becomes the icon on the app, the receipts and the van.</span>
+            </a>
+          </li>
+          <li class="shot-card">
+            <a href="/work/logo-folio">
+              <span class="shot-card__img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp22.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp22.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp22.webp&amp;w=1200&amp;q=78 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp22.webp&amp;w=1600&amp;q=78 1600w" sizes="(max-width: 760px) 82vw, (max-width: 1320px) 45vw, 620px" alt="Grid of ten logos designed by Nandu" loading="lazy" decoding="async"><span class="shot-card__go" aria-hidden="true">View →</span></span>
+              <span class="shot-card__t">Logo folio</span>
+              <span class="shot-card__note">small first, pretty second</span>
+              <span class="shot-card__sub">Marks for Strive Media, Alwan 360 Consultancy, Fleur &amp; Co. and more, each shown in use.</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+      <section class="shelf" data-cat="print" aria-labelledby="shelf-print">
+        <header class="shelf__h">
+          <p class="shelf__n">03</p>
+          <h3 class="shelf__t" id="shelf-print">Social &amp; print</h3>
+          <p class="shelf__note">made to be scrolled or folded</p>
+          <p class="shelf__c">2 projects<span class="shelf__swipe" aria-hidden="true"> · swipe →</span></p>
+        </header>
+        <ul class="shelf__list">
+          <li class="shot-card">
+            <a href="/work/social-media">
+              <span class="shot-card__img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp06.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp06.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp06.webp&amp;w=1200&amp;q=78 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp06.webp&amp;w=1600&amp;q=78 1600w" sizes="(max-width: 760px) 82vw, (max-width: 1320px) 45vw, 620px" alt="Grid of social media posts" loading="lazy" decoding="async"><span class="shot-card__go" aria-hidden="true">View →</span></span>
+              <span class="shot-card__t">Social media</span>
+              <span class="shot-card__note">one idea per square</span>
+              <span class="shot-card__sub">Feed posts and campaigns where every square carries one idea and one strong image.</span>
+            </a>
+          </li>
+          <li class="shot-card">
+            <a href="/work/print-stationery">
+              <span class="shot-card__img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp13.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp13.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp13.webp&amp;w=1200&amp;q=78 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fpf%2Fp13.webp&amp;w=1600&amp;q=78 1600w" sizes="(max-width: 760px) 82vw, (max-width: 1320px) 45vw, 620px" alt="Bilingual brochure" loading="lazy" decoding="async"><span class="shot-card__go" aria-hidden="true">View →</span></span>
+              <span class="shot-card__t">Print &amp; stationery</span>
+              <span class="shot-card__note">folds, flyers and lanyards</span>
+              <span class="shot-card__sub">Bilingual brochures, a company profile, flyers and ID cards.</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+      <section class="shelf" data-cat="web" aria-labelledby="shelf-web">
+        <header class="shelf__h">
+          <p class="shelf__n">04</p>
+          <h3 class="shelf__t" id="shelf-web">Web, app &amp; listings</h3>
+          <p class="shelf__note">screens that have to sell</p>
+          <p class="shelf__c">4 projects<span class="shelf__swipe" aria-hidden="true"> · swipe →</span></p>
+        </header>
+        <ul class="shelf__list">
+          <li class="shot-card">
+            <a href="/work/nev">
+              <span class="shot-card__img"><img class="is-white" src="/_vercel/image?url=%2Fwork%2Fimg%2Fnev%2F2396907c-image.jpg&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fnev%2F2396907c-image.jpg&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fnev%2F2396907c-image.jpg&amp;w=1200&amp;q=78 1200w" sizes="(max-width: 760px) 82vw, (max-width: 1320px) 45vw, 620px" alt="NEV Sonic massage gun with its massage heads" loading="lazy" decoding="async"><span class="shot-card__go" aria-hidden="true">View →</span></span>
+              <span class="shot-card__meta">Client work · 2025</span>
+              <span class="shot-card__t">NEV Sonic</span>
+              <span class="shot-card__note">has to sell at thumbnail size</span>
+              <span class="shot-card__sub">Seven primary images and a twelve-module A+ page for a mini massage gun on Amazon.</span>
+            </a>
+          </li>
+          <li class="shot-card">
+            <a href="/work/kilig-mykilig-app">
+              <span class="shot-card__img"><img src="/_vercel/image?url=%2Fwork%2Fmykilig-hero.webp&amp;w=1600&amp;q=80" srcset="/_vercel/image?url=%2Fwork%2Fmykilig-hero.webp&amp;w=800&amp;q=80 800w, /_vercel/image?url=%2Fwork%2Fmykilig-hero.webp&amp;w=1600&amp;q=80 1600w" sizes="(max-width: 760px) 82vw, (max-width: 1320px) 45vw, 620px" alt="MyKilig app screens: welcome, home and cooking timer" loading="lazy" decoding="async"><span class="shot-card__go" aria-hidden="true">View →</span></span>
+              <span class="shot-card__meta">Client work · 2025</span>
+              <span class="shot-card__t">MyKilig app</span>
+              <span class="shot-card__note">no more babysitting fries</span>
+              <span class="shot-card__sub">One app for KILIG&rsquo;s air fryer, ice maker and car fridge, designed so you never have to stand and watch your food.</span>
+            </a>
+          </li>
+          <li class="shot-card">
+            <a href="https://mykilig.com" target="_blank" rel="noopener">
+              <span class="shot-card__img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_903af959-b8c2-47c4-860a-46c5a5d458a3.webp&amp;w=1200&amp;q=75" alt="Kilig cover" loading="lazy" decoding="async"><span class="shot-card__go" aria-hidden="true">Visit ↗</span></span>
+              <span class="shot-card__meta">Client site · 2025</span>
+              <span class="shot-card__t">Kilig</span>
+              <span class="shot-card__note">very different appliances, one store</span>
+              <span class="shot-card__sub">Turning a catalogue of very different appliances into one store that’s easy to shop.</span>
+            </a>
+          </li>
+          <li class="shot-card">
+            <a href="https://ryken.in" target="_blank" rel="noopener">
+              <span class="shot-card__img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_a91bc7c1-4056-44c6-a514-3f4f4077f015.webp&amp;w=1200&amp;q=75" alt="Ryken cover" loading="lazy" decoding="async"><span class="shot-card__go" aria-hidden="true">Visit ↗</span></span>
+              <span class="shot-card__meta">Client site · 2025</span>
+              <span class="shot-card__t">Ryken</span>
+              <span class="shot-card__note">launched from a blank page</span>
+              <span class="shot-card__sub">Launching a kitchen-appliance brand online, built around its first product.</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+      <section class="shelf" data-cat="ai" aria-labelledby="shelf-ai">
+        <header class="shelf__h">
+          <p class="shelf__n">05</p>
+          <h3 class="shelf__t" id="shelf-ai">AI visuals</h3>
+          <p class="shelf__note">shot without a studio</p>
+          <p class="shelf__c">3 projects<span class="shelf__swipe" aria-hidden="true"> · swipe →</span></p>
+        </header>
+        <ul class="shelf__list shelf__list--odd">
+          <li class="shot-card">
+            <a href="/work/kilig-wine-cooler">
+              <span class="shot-card__img"><img src="/_vercel/image?url=%2Fwork%2Fkilig-wc18-ad.webp&amp;w=1200&amp;q=78" srcset="/_vercel/image?url=%2Fwork%2Fkilig-wc18-ad.webp&amp;w=800&amp;q=78 800w, /_vercel/image?url=%2Fwork%2Fkilig-wc18-ad.webp&amp;w=1200&amp;q=78 1200w" sizes="(max-width: 760px) 82vw, (max-width: 1320px) 45vw, 620px" alt="KILIG WC-18 wine cooler with wine bottles, grapes and ice on deep blue" loading="lazy" decoding="async"><span class="shot-card__go" aria-hidden="true">View →</span></span>
+              <span class="shot-card__meta">Client work · 2025</span>
+              <span class="shot-card__t">KILIG WC&#8209;18 Wine Cooler</span>
+              <span class="shot-card__note">no studio was harmed</span>
+              <span class="shot-card__sub">A cinematic AI video ad and an eight-image Amazon listing for a compact wine cooler.</span>
+            </a>
+          </li>
+          <li class="shot-card">
+            <a href="/work/steep">
+              <span class="shot-card__img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=1200&amp;q=75" srcset="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=800&amp;q=75 800w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=1200&amp;q=75 1200w, /_vercel/image?url=%2Fwork%2Fimg%2Fhf_75f38e8c-2af2-45fb-8c92-72190d151810.webp&amp;w=1600&amp;q=75 1600w" sizes="(max-width: 760px) 82vw, (max-width: 1320px) 45vw, 620px" alt="Steep smart kettle product shot" loading="lazy" decoding="async"><span class="shot-card__go" aria-hidden="true">View →</span></span>
+              <span class="shot-card__meta">Concept · 2026</span>
+              <span class="shot-card__t">Steep</span>
+              <span class="shot-card__note">zero shoots, all kettle</span>
+              <span class="shot-card__sub">A smart-kettle launch campaign made entirely with generative AI. No studio, no shoot.</span>
+            </a>
+          </li>
+          <li class="shot-card">
+            <a href="/work/ai-ad-studio">
+              <span class="shot-card__img"><img src="/_vercel/image?url=%2Fwork%2Fimg%2Fhf_1334ad03-2037-48bd-8f42-45d9d4e3c5b8.webp&amp;w=1200&amp;q=75" alt="AI Ad Studio cover" loading="lazy" decoding="async"><span class="shot-card__go" aria-hidden="true">View →</span></span>
+              <span class="shot-card__meta">Workflow · 2025</span>
+              <span class="shot-card__t">AI Ad Studio</span>
+              <span class="shot-card__note">prompt, generate, fix by hand</span>
+              <span class="shot-card__sub">Product imagery and video ads without a full shoot: prompt, generate, then retouch and brand-check by hand.</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </div>
   </div>
 </section>
 
@@ -1019,6 +1031,22 @@ tiles.forEach(function(t){t.addEventListener('pointermove',function(e){var r=t.g
   }
 
 
+
+  /* work shelves: filter by category */
+  var shelves = document.querySelector('[data-shelves]');
+  if (shelves) {
+    var sbtn = document.querySelectorAll('.shelf__bar .deck__f button'), sh = [].slice.call(shelves.children);
+    sbtn.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var f = btn.dataset.f;
+        sbtn.forEach(function(x){ x.setAttribute('aria-pressed', x === btn ? 'true' : 'false'); });
+        sh.forEach(function(g){ g.hidden = !(f === 'all' || g.dataset.cat === f); });
+        var top = shelves.getBoundingClientRect().top;
+        if (top < 0) scrollTo({ top: top + scrollY - 110, behavior: reduce ? 'auto' : 'smooth' });
+        if (window.gtag) gtag('event', 'work_filter', { filter: f });
+      });
+    });
+  }
   /* work deck */
   var deck = document.querySelector('[data-deck]');
   if (deck) {
